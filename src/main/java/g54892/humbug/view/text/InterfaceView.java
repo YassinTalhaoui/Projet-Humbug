@@ -7,7 +7,7 @@ import g54892.humbug.model.Direction;
 import g54892.humbug.model.Position;
 
 /**
- *
+ * 
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public interface InterfaceView{

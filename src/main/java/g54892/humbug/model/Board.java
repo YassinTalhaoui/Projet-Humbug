@@ -116,9 +116,9 @@ public class Board {
      * This object (which is already a string!) is itself returned.
      * @return  the string itself.
      */ 
-    @Override
+   /* @Override
     public String toString() {
         return "Board{" + "squares=" + Arrays.deepToString(squares) + '}';
-    }
+    }*/
     
 }

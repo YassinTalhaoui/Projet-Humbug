@@ -42,10 +42,11 @@ public enum Direction {
         return deltaColumn;
     }
 
-    @Override
+    /*@Override
     public String toString() {
-        return "Direction{" + "deltaRow=" + deltaRow + ", deltaColumn=" + deltaColumn + '}';
-    }
+        //return "Direction{" + "deltaRow=" + deltaRow + ", deltaColumn=" + deltaColumn + '}';
+        //return Direction.;
+    }*/
     
     
 
