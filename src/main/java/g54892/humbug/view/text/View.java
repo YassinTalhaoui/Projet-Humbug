@@ -1,6 +1,7 @@
 
 package g54892.humbug.view.text;
 
+import g54892.humbug.model.Animal;
 import g54892.humbug.model.Board;
 import g54892.humbug.model.Direction;
 import static g54892.humbug.model.Direction.EAST;
@@ -8,10 +9,13 @@ import static g54892.humbug.model.Direction.NORTH;
 import static g54892.humbug.model.Direction.SOUTH;
 import static g54892.humbug.model.Direction.WEST;
 import g54892.humbug.model.Position;
+import g54892.humbug.model.Snail;
 import g54892.humbug.model.Square;
 import g54892.humbug.model.SquareType;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
+import java.awt.Color;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -21,24 +25,38 @@ import java.util.Scanner;
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class View implements InterfaceView{
-    
+     public static final String BLACK_BOLD = "\033[1;30m";
     /**
      * displays the gaming board.
      * @param board a given board.
      */
-    public void displayBoard(Board board) {
+    public void displayBoard(Board board, Animal... animals) {
         String[][] game = new String[board.getNbRow()][board.getNbColumn()];
         for (int i = 0; i < game.length; i++) {
+            System.out.println("");
+            System.out.println("_____________________");
             for (int j = 0; j < game[i].length; j++) {
-                Position pos = new Position(i, j);
-                if(board.isInside(pos))
-                if ( SquareType.GRASS == board.getSquareType(pos)
-                        || SquareType.STAR == board.getSquareType(pos)) {
-                     System.out.format(" %2s ", "| |");
-                    //System.out.println(board);
+                Position pos = new Position(i, j);   
+             
+                    
+                        /*  if(board.isInside(pos) ) {
+                        if(board.getSquares()[i][j].getType()!=null)
+                        if (board.isInside(pos)&& SquareType.GRASS == board.getSquareType(pos)
+                        || SquareType.STAR == board.getSquareType(pos)) { */
+                        System.out.format(" %2s ", " |  |");
+                        
+                        //}
+                        
+                        // }
+                   // }
+                    
+                    //}
+                    
+                    // }
                 }
-            }
-        }
+            //System.out.println("_______");
+    }
+       
     }
     
     /**
@@ -72,7 +90,7 @@ public class View implements InterfaceView{
         Scanner kbd1 = new Scanner(System.in);
         System.out.println("Veuillez entrer un numero de colonne");
         int column = kbd1.nextInt();
-         while ( column>2 || column<=0 ) {
+         while ( column>2 || column<0 ) {
             
              String message ="Le nombre saisi n'est pas correct. "
                 + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
@@ -120,8 +138,8 @@ public class View implements InterfaceView{
     }
 
     public static void main(String[] args) {
-        Position pos = new Position(0, 0);
-        Position p= new Position(0, 0);
+       // Position pos = new Position(0, 0);
+       // Position p= new Position(0, 0);
         View obj = new View();
     
               Board board = new Board(new Square[][]{
@@ -129,16 +147,27 @@ public class View implements InterfaceView{
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
-              obj.displayBoard(board);
+              View view = new View();
+              
+              Animal[] animals = new Animal[] {
+            new Snail(new Position(0, 0)),
+            new Snail(new Position(0, 1))
+        };
+              
+               Board bd = Board.getInitialBoard();
+              
+              view.displayBoard(bd,animals[0],animals[1]);
+              //obj.displayBoard(board);
+           
+              
+              
              System.out.println("");
-             System.out.println(obj.askPosition());
-             System.out.println(obj.askDirection());
+             System.out.println(view.askPosition());
+             System.out.println(view.askDirection());
        
 }
 
     public View() {
         
     }
-    
-   
 }

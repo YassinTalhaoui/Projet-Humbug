@@ -2,7 +2,8 @@
 package g54892.humbug.model;
 
 /**
- *
+ * Represents the different animals that are moving 
+ * in the gaming board.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public abstract class Animal {
@@ -19,7 +20,7 @@ public abstract class Animal {
     }
 
     /**
-     * Simple getter of onStar.
+     * Simple getter of positionOnBoard.
      * @return the position of the animal.
      */
     public Position getPositionOnBoard() {
@@ -52,8 +53,6 @@ public abstract class Animal {
     
     public abstract Position move(Board board,
             Direction direction, Animal... animals);
-    
-    
     
     
 }

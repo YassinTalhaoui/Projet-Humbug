@@ -31,9 +31,9 @@ public class Main {
          System.out.println(Board.getInitialBoard());
          System.out.println(Board.getInitialBoard().isInside(position1));
         
-        /* System.out.println(Board.getInitialBoard().getSquareType(position1));
+         System.out.println(Board.getInitialBoard().getSquareType(position1));
          System.out.println(Board.getInitialBoard().getNbColumn());
-         System.out.println(Board.getInitialBoard().getNbRow());*/
+         System.out.println(Board.getInitialBoard().getNbRow());
          
          /*System.out.println(View.askPosition());
          Position object = new Position(0,0);

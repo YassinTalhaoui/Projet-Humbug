@@ -12,6 +12,10 @@ import java.util.Arrays;
  */
 public class Board {
     private Square[][] squares;
+
+    public Square[][] getSquares() {
+        return squares;
+    }
     
     /**
      * Constructor of the Board.
@@ -43,22 +47,22 @@ public class Board {
         if (pos == null) {
             throw new IllegalArgumentException("position invalide " + pos);
         }
-        if (pos.getRow() < 0 || pos.getRow() >= 3) {
+        if (pos.getRow() < 0 || pos.getRow() >= squares.length) {
             return false;
         }
-        if (pos.getColumn() < 0 || pos.getColumn() >= 3) {
+        if (pos.getColumn() < 0 || pos.getColumn() >= squares[0].length) {
             return false;
         }
         if (squares[pos.getRow()][pos.getColumn()] == null) {
             return false;
         }
 
-        if (squares[pos.getRow()][pos.getColumn()].getType() == GRASS) {
+        /*if (squares[pos.getRow()][pos.getColumn()].getType() == GRASS) {
             return true;
         }
         if (squares[pos.getRow()][pos.getColumn()].getType() == STAR) {
             return true;
-        }
+        }*/
         return true;
 
     }
@@ -75,7 +79,7 @@ public class Board {
         }
         SquareType type = squares[pos.getRow()][pos.getColumn()].getType();
         Position currentPos = null;
-
+        
         for (Square[] square : squares) {
             for (Square square1 : square) {
                 if (pos == currentPos) {

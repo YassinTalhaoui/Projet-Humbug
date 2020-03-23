@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
-public class Game {
+public class Game implements Model{
     Board board;
     Animal[] animals;
 
@@ -40,7 +40,18 @@ public class Game {
      * @return true if the level is over, false otherwise.
      */
     public boolean levelIsOver(){
-        return false;
+          if(board == null){
+            throw new IllegalArgumentException("board ne peut pas etre null "+board);
+        }
+         if(animals == null || animals.length == 0){
+            throw new IllegalArgumentException("animals ne peut pas etre null "+Arrays.toString(animals));
+        }
+         
+         for(int i = 0; i<animals.length; i++){
+             while(animals[i].isOnStar());
+             return false;
+         }
+        return true;
         
     }
     
