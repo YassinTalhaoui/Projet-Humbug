@@ -105,14 +105,19 @@ public class Game implements Model{
          }
          int i =0;    
          while(i<animals.length){
-             if(animals[i].move(board,direction, animals)== null){
+            
+             if(animals[i].move(board,direction, animals) == null ){
                  System.out.println("l' animal tombe!");
              }else{
-                 animals[i].move(board, direction, animals);
+                position=  animals[i].move(board, direction, animals);
+                 animals[i].setPositionOnBoard(position);
+                 //animals[0].move(board, direction, animals);
              }
+            
              i++;
-         }
+            }
          
+    
     }
 
     /**
@@ -143,8 +148,8 @@ public class Game implements Model{
         Position pos = new Position(0, 0);
         Object object = new Object();
         Game g = new Game();
-        ga.move(pos, Direction.SOUTH);
-        
+        ga.move(pos, Direction.WEST);
+        System.out.println(ga);
         //ga.move( ga.animals[0].getPositionOnBoard(), Direction.EAST);
         
         //System.out.println(ga);

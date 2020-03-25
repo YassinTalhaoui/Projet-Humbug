@@ -38,7 +38,7 @@ public class View implements InterfaceView{
             for (int j = 0; j < game[i].length; j++) {
                 Position pos = new Position(i, j);
                 if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
-                    if (pos.equals(animals[i].getPositionOnBoard())) {
+                    if (pos.equals(animals[0].getPositionOnBoard())) {
                         System.out.format(" %2s ", " | S |");
                     } else {
                         System.out.format(" %2s ", " |   |");
@@ -147,13 +147,14 @@ public class View implements InterfaceView{
               View view = new View();
               
               Animal[] animals = new Animal[] {
-            new Snail(new Position(0, 1)),
-            new Snail(new Position(1, 2))
+            new Snail(new Position(0, 0)),
+                  
+            //new Snail(new Position(1, 2))
         };
               
                Board bd = Board.getInitialBoard();
-              
-              view.displayBoard(bd,animals[0],animals[1]);
+               view.displayBoard(bd,animals);
+              //view.displayBoard(bd,animals[0],animals[1]);
               //obj.displayBoard(board);
 
               //System.out.println("\033[34m" + "Hello, World" + "\033[m");

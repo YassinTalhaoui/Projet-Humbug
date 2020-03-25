@@ -1,16 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: g54892.humbug.model.SpiderTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! - in g54892.humbug.model.SpiderTest
-testMove_nextOnStar  Time elapsed: 0.015 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <Position{row=0, column=2}> but was: <null>
-	at g54892.humbug.model.SpiderTest.testMove_nextOnStar(SpiderTest.java:146)
+Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.03 s <<< FAILURE! - in g54892.humbug.model.SpiderTest
+testMove_nextOnStar  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at g54892.humbug.model.SpiderTest.testMove_nextOnStar(SpiderTest.java:147)
 
-testMove_passOnStar  Time elapsed: 0.001 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <Position{row=0, column=2}> but was: <null>
-	at g54892.humbug.model.SpiderTest.testMove_passOnStar(SpiderTest.java:126)
-
-testMove_next_notfree  Time elapsed: 0.001 s  <<< FAILURE!
+testMove_next_notfree  Time elapsed: 0.01 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <Position{row=0, column=0}> but was: <null>
 	at g54892.humbug.model.SpiderTest.testMove_next_notfree(SpiderTest.java:96)
 

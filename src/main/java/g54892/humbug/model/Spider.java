@@ -25,13 +25,21 @@ public class Spider extends Animal {
        for(int i = 0;i < animals.length && isFree; i++){
            if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {  
                //isFree = false;
-                return pos;
+                return getPositionOnBoard();
             }
+            
+           
              pos = pos.next(direction);
-             setPositionOnBoard(pos); 
+             setPositionOnBoard(pos);  
+             
+             
+             
        }
-
+    if(!board.isInside(pos.next(direction))){
           return null;
+    }
+
+    return getPositionOnBoard();
 }
     
      private void spiderToNull(Animal... animals) {

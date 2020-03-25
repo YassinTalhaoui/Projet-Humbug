@@ -20,7 +20,7 @@ public class Main {
         Controller controller = new Controller(new Game(), new View());
         controller.startGame();
       
-      Position position1 =new Position(2,2);
+        /*Position position1 =new Position(2,2);
        
          System.out.println(position1.next(Direction.EAST));
          System.out.println(position1.next(Direction.NORTH));
@@ -30,7 +30,7 @@ public class Main {
         
          System.out.println(Board.getInitialBoard().getSquareType(position1));
          System.out.println(Board.getInitialBoard().getNbColumn());
-         System.out.println(Board.getInitialBoard().getNbRow());
+         System.out.println(Board.getInitialBoard().getNbRow());*/
          
          
          

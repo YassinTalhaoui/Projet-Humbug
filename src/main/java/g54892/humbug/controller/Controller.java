@@ -9,7 +9,8 @@ import g54892.humbug.view.text.InterfaceView;
 import g54892.humbug.view.text.View;
 
 /**
- *
+ * This class is responsible for the dynamics of the game and the updating of
+ * sight as you go.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Controller {
@@ -32,16 +33,21 @@ public class Controller {
      */
     public void startGame(){
         game.startLevel(1);
-        while(!game.levelIsOver() && game.getAnimals() != null){
+       
+        while(!game.levelIsOver() && !game.getAnimals()[0].isOnStar()){
+            //System.out.println(game.getAnimals()[0].getPositionOnBoard());  la position de l animal
             view.displayBoard(game.getBoard(), game.getAnimals());
+            System.out.println("");
             try{
                 Position pos = view.askPosition();               
                 Direction direction = view.askDirection();
                 game.move(pos, direction);
+                
             } catch (Exception e){
                 view.displayError("erreur !!!");
             }
         }
+        System.out.println("Fin de la partie");
     }
     public static void main(String[] args) {
         Object object = new Object();
@@ -49,14 +55,16 @@ public class Controller {
         View view = new View();
         Controller controller = new Controller(game, view);
         controller.startGame();
-        
-        
+       // game.move(pos, direction);
     }
 
+    /**
+     * This object (which is already a string!) is itself returned.
+     * @return  the string itself.
+     */
     @Override
     public String toString() {
         return "Controller{" + "game=" + game + ", view=" + view + '}';
     }
-    
     
 }
