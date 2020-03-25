@@ -1,8 +1,12 @@
 
 package g54892.humbug.controller;
 
+import g54892.humbug.model.Direction;
+import g54892.humbug.model.Game;
 import g54892.humbug.model.Model;
+import g54892.humbug.model.Position;
 import g54892.humbug.view.text.InterfaceView;
+import g54892.humbug.view.text.View;
 
 /**
  *
@@ -27,7 +31,32 @@ public class Controller {
      * no animals has fallen.
      */
     public void startGame(){
+        game.startLevel(1);
+        while(!game.levelIsOver() && game.getAnimals() != null){
+            view.displayBoard(game.getBoard(), game.getAnimals());
+            try{
+                Position pos = view.askPosition();               
+                Direction direction = view.askDirection();
+                game.move(pos, direction);
+            } catch (Exception e){
+                view.displayError("erreur !!!");
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Object object = new Object();
+        Game game = new Game();
+        View view = new View();
+        Controller controller = new Controller(game, view);
+        controller.startGame();
+        
         
     }
+
+    @Override
+    public String toString() {
+        return "Controller{" + "game=" + game + ", view=" + view + '}';
+    }
+    
     
 }

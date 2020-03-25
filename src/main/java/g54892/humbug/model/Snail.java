@@ -11,7 +11,7 @@ import java.nio.file.Files;
 
 
 /**
- *
+ * This class represents snails on the board.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Snail extends Animal {
@@ -46,6 +46,10 @@ public class Snail extends Animal {
         return pos.next(direction);
     }
 
+    /**
+     * Nullifies an animal if it's on a star.
+     * @param animals a snail.
+     */
     private void snailToNull(Animal... animals) {
         Animal snail = new Snail(getPositionOnBoard());
         for (Animal animal : animals) {
@@ -54,6 +58,16 @@ public class Snail extends Animal {
             }
         }
     }
+
+    /**
+     * Represents an object into a String.
+     * @return the String itself.
+     */
+    @Override
+    public String toString() {
+        return "Snail";
+    }
+    
 }
     
    

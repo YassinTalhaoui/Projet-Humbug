@@ -1,27 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package g54892.humbug.main;
 
+import g54892.humbug.controller.Controller;
 import g54892.humbug.model.Board;
 import g54892.humbug.model.Direction;
+import g54892.humbug.model.Game;
 import g54892.humbug.model.Position;
 import g54892.humbug.model.Square;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 import g54892.humbug.view.text.View;
 
-
 /**
- *
+ * Creates the contoller and starts the game.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Main {  
     public static void main(String[] args) {
-      /*  Controller controller = new Controller(new Game(), new View());
-        controller.startGame();*/
+        Controller controller = new Controller(new Game(), new View());
+        controller.startGame();
       
       Position position1 =new Position(2,2);
        
@@ -35,9 +32,7 @@ public class Main {
          System.out.println(Board.getInitialBoard().getNbColumn());
          System.out.println(Board.getInitialBoard().getNbRow());
          
-         /*System.out.println(View.askPosition());
-         Position object = new Position(0,0);
-         object= askPosition();*/
+         
          
         
         

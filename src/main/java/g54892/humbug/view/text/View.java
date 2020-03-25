@@ -34,30 +34,27 @@ public class View implements InterfaceView{
         String[][] game = new String[board.getNbRow()][board.getNbColumn()];
         for (int i = 0; i < game.length; i++) {
             System.out.println("");
-            System.out.println("_____________________");
+            System.out.println("________________________");
             for (int j = 0; j < game[i].length; j++) {
-                Position pos = new Position(i, j);   
-             
+                Position pos = new Position(i, j);
+                if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
+                    if (pos.equals(animals[i].getPositionOnBoard())) {
+                        System.out.format(" %2s ", " | S |");
+                    } else {
+                        System.out.format(" %2s ", " |   |");
+                    }
                     
-                        /*  if(board.isInside(pos) ) {
-                        if(board.getSquares()[i][j].getType()!=null)
-                        if (board.isInside(pos)&& SquareType.GRASS == board.getSquareType(pos)
-                        || SquareType.STAR == board.getSquareType(pos)) { */
-                        System.out.format(" %2s ", " |  |");
-                        
-                        //}
-                        
-                        // }
-                   // }
-                    
-                    //}
-                    
-                    // }
+                } else if (board.isInside(pos) && board.getSquareType(pos).equals(STAR)) {
+                    System.out.format(" %2s ", " | * |");
+                } else if (!board.isInside(pos)) {
+                    System.out.format(" %2s ", " | X |");
                 }
-            //System.out.println("_______");
+
+            }
+        }
     }
-       
-    }
+
+
     
     /**
      * Displays a message for error. 
@@ -142,25 +139,25 @@ public class View implements InterfaceView{
        // Position p= new Position(0, 0);
         View obj = new View();
     
-              Board board = new Board(new Square[][]{
+            /*  Board board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), null},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
-        });
+        });*/
               View view = new View();
               
               Animal[] animals = new Animal[] {
-            new Snail(new Position(0, 0)),
-            new Snail(new Position(0, 1))
+            new Snail(new Position(0, 1)),
+            new Snail(new Position(1, 2))
         };
               
                Board bd = Board.getInitialBoard();
               
               view.displayBoard(bd,animals[0],animals[1]);
               //obj.displayBoard(board);
-           
-              
-              
+
+              //System.out.println("\033[34m" + "Hello, World" + "\033[m");
+             System.out.println("");
              System.out.println("");
              System.out.println(view.askPosition());
              System.out.println(view.askDirection());
@@ -170,4 +167,11 @@ public class View implements InterfaceView{
     public View() {
         
     }
+
+    @Override
+    public String toString() {
+               //Board bd = Board.getInitialBoard();
+        return "View ";
+    }
+    
 }
