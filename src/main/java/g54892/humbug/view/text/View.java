@@ -61,9 +61,7 @@ public class View implements InterfaceView{
      * @param message a String to display;
      */
     public void displayError(String message){
-        
-        message ="Le nombre saisi n'est correct "
-                + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
+        message ="ERREUR !!!";
         
     }
     

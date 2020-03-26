@@ -22,39 +22,35 @@ public class Spider extends Animal {
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree = true;
-       for(int i = 0;i < animals.length && isFree; i++){
-           if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {  
-               //isFree = false;
+        for (int i = 0; i < animals.length; i++) {
+            if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {
                 return getPositionOnBoard();
             }
-            
-           
-             pos = pos.next(direction);
-             setPositionOnBoard(pos);  
-             
-             
-             
-       }
-    if(!board.isInside(pos.next(direction))){
-          return null;
+            if (animals[1].getPositionOnBoard().equals(pos.next(direction))) {
+                return pos;
+            }
+            pos = pos.next(direction);
+            setPositionOnBoard(pos);
+        }
+        if (!board.isInside(pos.next(direction))) {
+            return null;
+        }
+        int i = 0;
+        while (i < animals.length) {
+            Spider sp = new Spider(pos);
+            if (board.getSquares()[animals[i].getPositionOnBoard().getRow()][animals[i].getPositionOnBoard().getColumn()].getType().equals(STAR)) {
+                animals[i].setOnStar(true);
+            }
+            if (animals[i].isOnStar()) {
+                board.getSquares()[animals[i].getPositionOnBoard().getRow()][animals[i].getPositionOnBoard().getColumn()].setType(GRASS);
+            } else {
+                animals[i].setOnStar(false);
+            }
+            i++;
+        }
+        return getPositionOnBoard();
     }
 
-    return getPositionOnBoard();
-}
-    
-     private void spiderToNull(Animal... animals) {
-        Animal spider = new Spider(getPositionOnBoard());
-        for (Animal animal : animals) {
-            if (animal.isOnStar()) {
-                spider = null;
-            }
-        }
-    }
-    
-    
-    public static void main(String[] args) {
-        
-    }
 }
     
    

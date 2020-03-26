@@ -47,7 +47,7 @@ public class Controller {
                 view.displayError("erreur !!!");
             }
         }
-        System.out.println("Fin de la partie");
+        System.out.println("Felecitation vous etes le gagnant !!!!!!!!!");
     }
     public static void main(String[] args) {
         Object object = new Object();
