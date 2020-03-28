@@ -13,6 +13,10 @@ import java.util.Arrays;
 public class Board {
     private Square[][] squares;
 
+    /**
+     * Simple getter of Squares[][].
+     * @return a two dimensional squares array.
+     */
     public Square[][] getSquares() {
         return squares;
     }
@@ -53,17 +57,7 @@ public class Board {
         if (pos.getColumn() < 0 || pos.getColumn() >= squares[0].length) {
             return false;
         }
-        if (squares[pos.getRow()][pos.getColumn()] == null) {
-            return false;
-        }
-
-        /*if (squares[pos.getRow()][pos.getColumn()].getType() == GRASS) {
-            return true;
-        }
-        if (squares[pos.getRow()][pos.getColumn()].getType() == STAR) {
-            return true;
-        }*/
-        return true;
+        return squares[pos.getRow()][pos.getColumn()] != null;
 
     }
 

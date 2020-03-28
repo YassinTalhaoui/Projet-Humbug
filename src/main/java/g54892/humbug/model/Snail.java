@@ -1,14 +1,8 @@
 
 package g54892.humbug.model;
 
-import static g54892.humbug.model.Direction.EAST;
-import static g54892.humbug.model.Direction.NORTH;
-import static g54892.humbug.model.Direction.SOUTH;
-import static g54892.humbug.model.Direction.WEST;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
-import java.nio.file.Files;
-
 
 /**
  * This class represents snails on the board.
@@ -16,30 +10,39 @@ import java.nio.file.Files;
  */
 public class Snail extends Animal {
 
+    /**
+     * Construcor of positionOnBoard. 
+     * @param positionOnBoard the current position of the animals.
+     */
     public Snail(Position positionOnBoard) {
         super(positionOnBoard);
     }
-
+    
+    /**
+     * Moves the given snails on the gaming board.
+     * @param board the gaming board.
+     * @param direction the direction of the deplacement.
+     * @param animals represents one or a lot of snails.
+     * @return The deplacement of one of the snails on the board.
+     */
     @Override
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree = true;
-        for (int i = 0; i < animals.length; i++) {
-            if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {
-                //isFree=true;
+        for (Animal animal : animals) {
+            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
                 return pos;
             } else if (!Board.getInitialBoard().isInside(pos.next(direction))) {
                 return null;
             }
             if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
                 if (board.getSquareType(pos.next(direction)) == STAR) {
-                    animals[i].setOnStar(true);
+                    animal.setOnStar(true);
                     if (isOnStar()) {
                         board.getSquares()[board.getNbRow()-1][board.getNbColumn()-1].setType(GRASS);
                         snailToNull(animals); 
                     }
                 }
-
             }
         }
 

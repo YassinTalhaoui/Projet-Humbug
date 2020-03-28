@@ -9,15 +9,9 @@ import static g54892.humbug.model.Direction.NORTH;
 import static g54892.humbug.model.Direction.SOUTH;
 import static g54892.humbug.model.Direction.WEST;
 import g54892.humbug.model.Position;
-import g54892.humbug.model.Snail;
-import g54892.humbug.model.Square;
-import g54892.humbug.model.SquareType;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
-import java.awt.Color;
-import java.util.Arrays;
 import java.util.Scanner;
-
 
 /**
  * This class regroups every interaction with the user 
@@ -25,10 +19,11 @@ import java.util.Scanner;
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class View implements InterfaceView{
-     public static final String BLACK_BOLD = "\033[1;30m";
+   
     /**
      * displays the gaming board.
      * @param board a given board.
+     * @param animals the given animals.
      */
     public void displayBoard(Board board, Animal... animals) {
         String[][] game = new String[board.getNbRow()][board.getNbColumn()];
@@ -54,15 +49,14 @@ public class View implements InterfaceView{
         }
     }
 
-
-    
     /**
-     * Displays a message for error. 
+     * Displays a message for error.
+     *
      * @param message a String to display;
      */
-    public void displayError(String message){
-        message ="ERREUR !!!";
-        
+    public void displayError(String message) {
+        message = "ERREUR !!!";
+
     }
     
     /**
@@ -73,28 +67,27 @@ public class View implements InterfaceView{
         Scanner kbd = new Scanner(System.in);
         System.out.println("Veuillez entrer un numero de ligne");
         int line = kbd.nextInt();
-         while ( line>2 || line<0 ) {
-            //kbd.next();
-           
-           String message ="Le nombre saisi n'est pas correct. "
-                + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
-             System.out.println(message);
-           line = kbd.nextInt();
+        while (line > 2 || line < 0) {
+
+            String message = "Le nombre saisi n'est pas correct. "
+                    + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
+            System.out.println(message);
+            line = kbd.nextInt();
         }
-        
+
         Scanner kbd1 = new Scanner(System.in);
         System.out.println("Veuillez entrer un numero de colonne");
         int column = kbd1.nextInt();
-         while ( column>2 || column<0 ) {
-            
-             String message ="Le nombre saisi n'est pas correct. "
-                + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
-             System.out.println(message);
-           column = kbd1.nextInt();
+        while (column > 2 || column < 0) {
+
+            String message = "Le nombre saisi n'est pas correct. "
+                    + "Veuillez entrer un nombre entier entre 0 et 2 compris. ";
+            System.out.println(message);
+            column = kbd1.nextInt();
         }
         Position pos = new Position(line, column);
         return pos;
-        
+
     }
     
     /**
@@ -103,7 +96,6 @@ public class View implements InterfaceView{
      */
     public Direction askDirection() {
         Scanner kbd = new Scanner(System.in);
-       // System.out.println("Veuillez entrer une valeur parmi: 1, 2, 3, ou 4" );
         System.out.println("Veuillez entrer un chiffre parmi:"+ 1+" EAST");
         System.out.println("                                 "+ 2+" NORTH");
         System.out.println("                                 "+ 3+" SOUTH");
@@ -131,46 +123,4 @@ public class View implements InterfaceView{
      
         return d[nb];
     }
-
-    public static void main(String[] args) {
-       // Position pos = new Position(0, 0);
-       // Position p= new Position(0, 0);
-        View obj = new View();
-    
-            /*  Board board = new Board(new Square[][]{
-            {new Square(GRASS), new Square(GRASS), null},
-            {null, new Square(GRASS), new Square(GRASS)},
-            {null, null, new Square(STAR)}
-        });*/
-              View view = new View();
-              
-              Animal[] animals = new Animal[] {
-            new Snail(new Position(0, 0)),
-                  
-            //new Snail(new Position(1, 2))
-        };
-              
-               Board bd = Board.getInitialBoard();
-               view.displayBoard(bd,animals);
-              //view.displayBoard(bd,animals[0],animals[1]);
-              //obj.displayBoard(board);
-
-              //System.out.println("\033[34m" + "Hello, World" + "\033[m");
-             System.out.println("");
-             System.out.println("");
-             System.out.println(view.askPosition());
-             System.out.println(view.askDirection());
-       
-}
-
-    public View() {
-        
-    }
-
-    @Override
-    public String toString() {
-               //Board bd = Board.getInitialBoard();
-        return "View ";
-    }
-    
 }

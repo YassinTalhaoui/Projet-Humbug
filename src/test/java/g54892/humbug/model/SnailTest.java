@@ -5,18 +5,12 @@ import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import g54892.humbug.model.Board;
-import g54892.humbug.model.Direction;
-import g54892.humbug.model.Position;
-import g54892.humbug.model.Square;
 
 /**
- *
- * @author Yassin
+ * Test Snail.
+ * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class SnailTest {
     
@@ -89,12 +83,4 @@ public class SnailTest {
         assertEquals(expResult, result);
     }
 
-    
-    /*public SnailTest() {
-    }
-
-    @Test
-    public void testMove() {
-    }*/
-    
 }

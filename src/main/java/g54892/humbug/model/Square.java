@@ -33,7 +33,11 @@ public class Square {
     public void setType(SquareType type) {
         this.type = type;
     }
-
+    
+    /**
+     * Represents an object into a String.
+     * @return the String itself.
+     */
     @Override
     public String toString() {
        return ""+type+"";

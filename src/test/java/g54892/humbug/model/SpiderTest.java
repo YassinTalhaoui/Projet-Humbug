@@ -6,18 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import g54892.humbug.model.Board;
-import g54892.humbug.model.Direction;
-import g54892.humbug.model.Position;
-import g54892.humbug.model.Square;
-import static org.junit.jupiter.api.Assertions.*;
+/*import static org.junit.jupiter.api.Assertions.*;*/
 
 /**
- *
- * @author Yassin
+ * Test Spider.  
+* @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class SpiderTest {
     
@@ -148,12 +143,4 @@ public class SpiderTest {
         assertEquals(GRASS, board.getSquareType(result));
     }
 
-    
-   /* public SpiderTest() {
-    }
-
-    @Test
-    public void testMove() {
-    }*/
-    
 }

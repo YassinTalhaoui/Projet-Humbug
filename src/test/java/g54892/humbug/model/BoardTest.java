@@ -8,16 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- *
+ * Test Board.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class BoardTest {
-    
     private Board board;
-    
-    public BoardTest() {
-        
-    }
 
    @BeforeEach
     public void setUp() {
@@ -108,9 +103,9 @@ public class BoardTest {
     public void testGetSquareType_null() {
         System.out.println("get case type illegal argument");
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> { board.getSquareType(new Position(1, 0));
-    });
-
+                () -> {
+                    board.getSquareType(new Position(1, 0));
+                });
     }
     
 }

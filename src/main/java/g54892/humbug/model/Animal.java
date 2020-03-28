@@ -51,8 +51,14 @@ public abstract class Animal {
         this.onStar = onStar;
     }
     
+    /**
+     * Moves animals on the gaming board.
+     * @param board the gaming board.
+     * @param direction the direction of the deplacement.
+     * @param animals the given animals.
+     * @return the movement of the animals on the board.
+     */
     public abstract Position move(Board board,
             Direction direction, Animal... animals);
-    
     
 }

@@ -1,10 +1,6 @@
 
 package g54892.humbug.model;
 
-import static g54892.humbug.model.Direction.EAST;
-import static g54892.humbug.model.Direction.NORTH;
-import static g54892.humbug.model.Direction.SOUTH;
-import static g54892.humbug.model.Direction.WEST;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 
@@ -14,16 +10,27 @@ import static g54892.humbug.model.SquareType.STAR;
  */
 public class Spider extends Animal {
 
+    /**
+     * Constructor of positionOnBoard.
+     * @param positionOnBoard the current position of the animals.
+     */
     public Spider(Position positionOnBoard) {
         super(positionOnBoard);
     }
 
+    /**
+     * Moves the given spiders on the gaming board.
+     * @param board the gaming board.
+     * @param direction the direction of the deplacement.
+     * @param animals represents one or a lot of spiders.
+     * @return The deplacement of one of the spiders on the board.
+     */
     @Override
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree = true;
-        for (int i = 0; i < animals.length; i++) {
-            if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {
+        for (Animal animal : animals) {
+            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
                 return getPositionOnBoard();
             }
             if (animals[1].getPositionOnBoard().equals(pos.next(direction))) {

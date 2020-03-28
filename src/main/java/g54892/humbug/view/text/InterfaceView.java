@@ -1,44 +1,40 @@
 
 package g54892.humbug.view.text;
 
-
 import g54892.humbug.model.Animal;
 import g54892.humbug.model.Board;
 import g54892.humbug.model.Direction;
 import g54892.humbug.model.Position;
 
 /**
- * 
+ * Interface implemented by View.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public interface InterfaceView{
-    
+ 
     /**
-     * 
-     * @param board 
+     * displays the gaming board.
+     * @param board a given board.
+     * @param animals the given animals.
      */
     void displayBoard(Board board, Animal... animals);
 
     /**
-     *
-     * @return 
+     * Asks for a position and returns it.
+     * @return the given position.
      */
     Position askPosition();
-    
-    /**
-     *
-     * @return 
+
+     /**
+     * Asks for a direction and returns it.
+     * @return a direction between NORTH, SOUTH, EAST, WEST.
      */
     Direction askDirection();
-        
-    /**
-     *
-     * @param s
-     */
-    void displayError(String s);
-        
-      
 
-}
-    
-            
+   /**
+     * Displays a message for error.
+     * @param message
+     */
+    void displayError(String message);
+
+}          

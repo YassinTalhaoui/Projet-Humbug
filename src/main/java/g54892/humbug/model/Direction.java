@@ -23,9 +23,6 @@ public enum Direction {
         this.deltaColumn = deltaColumn;
     }
     
-    
-    
-    
     /**
      * Simple getter of deltaRow
      * @return an integer that represents moving east or west.
@@ -41,13 +38,5 @@ public enum Direction {
     public int getDeltaColumn() {
         return deltaColumn;
     }
-
-    /*@Override
-    public String toString() {
-        //return "Direction{" + "deltaRow=" + deltaRow + ", deltaColumn=" + deltaColumn + '}';
-        //return Direction.;
-    }*/
-    
-    
 
 }

@@ -4,7 +4,6 @@ package g54892.humbug.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -92,4 +91,5 @@ public class PositionTest {
         assertTrue(position1.hashCode() ==  position1.hashCode());
         assertTrue(position2.hashCode() ==  position2.hashCode());
     }
+    
 }
