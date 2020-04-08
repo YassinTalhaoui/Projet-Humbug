@@ -1,6 +1,7 @@
 
 package g54892.humbug.model;
 
+import static g54892.humbug.model.Direction.SOUTH;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 import java.util.Arrays;
@@ -39,6 +40,13 @@ public class Board {
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
+        Position pos = new Position(0, 1);
+        board.getSquare(pos).setNorthWall(true);
+        Position posi = new Position(1, 1);
+        board.getSquare(posi).setEastWall(true);
+        Position posis = new Position(1, 2);
+        board.getSquare(posis).setEastWall(true);
+
         return board;
     }
     
@@ -109,6 +117,10 @@ public class Board {
         }
         return j;        
     }
+    
+    public Square getSquare(Position pos) {
+    return squares[pos.getRow()][pos.getColumn()];
+}
        
     /**
      * This object (which is already a string!) is itself returned.

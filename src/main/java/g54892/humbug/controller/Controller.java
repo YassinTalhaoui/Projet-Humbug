@@ -44,7 +44,7 @@ public class Controller {
                 view.displayError("erreur !!!");
             }
         }
-        System.out.println("Felecitation vous etes le gagnant !!!!!!!!!");
+        System.out.println("Felicitation vous etes le gagnant !!!!!!!!!");
     }
   
     /**
