@@ -5,72 +5,94 @@ import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 
 /**
- * This class represents snails on the board.
+ * This class represents grasshoppers on the board.
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
-public class Snail extends Animal {
+public class Ladybird extends Animal{
 
     /**
      * Construcor of positionOnBoard. 
      * @param positionOnBoard the current position of the animals.
      */
-    public Snail(Position positionOnBoard) {
+    public Ladybird(Position positionOnBoard) {
         super(positionOnBoard);
     }
-    
-    /**
-     * Moves the given snails on the gaming board.
+
+     /**
+     * Moves the given ladybirds on the gaming board.
      * @param board the gaming board.
      * @param direction the direction of the deplacement.
-     * @param animals represents one or a lot of snails.
-     * @return The deplacement of one of the snails on the board.
+     * @param animals represents one or a lot of ladybirds.
+     * @return The deplacement of one of the ladybirds on the board.
      */
     @Override
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
-        boolean isFree = true;
+        boolean isFree=true;
         
-        for (Animal animal : animals) {
-            if (board.getSquare(pos).hasWall(direction)) {
-                return nextWall(board, direction, animals);
-            }
-            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
-                return pos;
-            } else if (!Board.getInitialBoard().isInside(pos.next(direction))) {
-                return null;
-            }
-            if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
+        if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
+           
                 if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
                     return pos;
                 }
-                if (board.getSquareType(pos.next(direction)) == STAR) {
+                
+             }
+        pos= pos.next(direction);
+       
+        for (Animal animal : animals) {
+             //pos= pos.next(direction);
+            if (board.getSquare(pos).hasWall(direction)) {
+                return nextWall(board, direction, animals);
+            }
+            
+            if(animal.getPositionOnBoard().equals(pos.next(direction))){
+                return pos;
+            }
+               
+            if (!board.isInside(pos.next(direction))) {
+             
+                return null;
+                }
+            /* if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
+                if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
+                    return pos;
+                }
+             }*/
+            if (board.getSquareType(pos.next(direction)) == STAR) {
                     animal.setOnStar(true);
                     if (isOnStar()) {
                         board.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);
-                        //board.getSquares()[board.getNbRow() - 1][board.getNbColumn() - 1].setType(GRASS);
-                        snailToNull(animals);
+                        ladyBirdToNull(animals);
                     }
-                }
             }
-        }
+                
+            
+                }
+         
+       // pos= pos.next(direction);
+        
+       /*if (!board.isInside(pos.next(direction))) {
+             
+                return null;
+                }*/
         return pos.next(direction);
     }
-
+    
     /**
      * Nullifies an animal if it's on a star.
      *
-     * @param animals a snail.
+     * @param animals a ladybird.
      */
-    private void snailToNull(Animal... animals) {
-        Animal snail = new Snail(getPositionOnBoard());
+    private void ladyBirdToNull(Animal... animals) {
+        Animal grasshopper = new Snail(getPositionOnBoard());
         for (Animal animal : animals) {
             if (animal.isOnStar()) {
-                snail = null;
+                grasshopper = null;
             }
         }
     }
-
-    /**
+    
+      /**
      * @param board the gaming board.
      * @param direction the direction of the deplacement.
      * @param animals represents one or a lot of snails.
@@ -88,21 +110,5 @@ public class Snail extends Animal {
         return null;
 
     }
-
-    /**
-     * Represents an object into a String.
-     * @return the String itself.
-     */
-    @Override
-    public String toString() {
-        return "Snail";
-    }
     
 }
-    
-   
-
-   
-
- 
-

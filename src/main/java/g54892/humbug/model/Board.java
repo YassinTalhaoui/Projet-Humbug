@@ -36,14 +36,14 @@ public class Board {
      */
     public static Board getInitialBoard(){
         Board board = new Board(new Square[][]{
-            {new Square(GRASS), new Square(GRASS), null},
+            {new Square(GRASS), new Square(GRASS),null},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
         Position pos = new Position(0, 1);
-        board.getSquare(pos).setNorthWall(true);
+        board.getSquare(pos).setEastWall(true);
         Position posi = new Position(1, 1);
-        board.getSquare(posi).setEastWall(true);
+        board.getSquare(posi).setNorthWall(true);
         Position posis = new Position(1, 2);
         board.getSquare(posis).setEastWall(true);
 

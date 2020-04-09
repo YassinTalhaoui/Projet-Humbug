@@ -55,8 +55,6 @@ public class SnailTest {
         assertEquals(expResult, result);
     }
 
-  
-    
     /**
      * Test of move method, of class Snail.
      */

@@ -33,12 +33,10 @@ public class Spider extends Animal {
         if (board.getSquare(pos).hasWall(direction)) {
             return nextWall(board, direction, animals);
         }
-        for (int i = 0; i < animals.length; i++) {
-
-            if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {
+        for (Animal animal : animals) {
+            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
                 return getPositionOnBoard();
             }
-
             if (animals[1].getPositionOnBoard().equals(pos.next(direction))) {
                 return pos;
             }
@@ -50,7 +48,6 @@ public class Spider extends Animal {
             }
             pos = pos.next(direction);
             setPositionOnBoard(pos);
-
         }
 
         if (!board.isInside(pos.next(direction))) {
