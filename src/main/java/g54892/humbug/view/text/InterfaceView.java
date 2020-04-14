@@ -23,7 +23,7 @@ public interface InterfaceView{
      * Asks for a position and returns it.
      * @return the given position.
      */
-    Position askPosition();
+    Position askPosition(int level);
 
      /**
      * Asks for a direction and returns it.

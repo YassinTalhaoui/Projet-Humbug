@@ -15,12 +15,13 @@ public class LadybirdTest {
     
    /* public LadybirdTest() {
     }*/
-
+    private int level;
      private Board board;
     private Animal[] animals;
     
      @BeforeEach
     public void setUp() {
+        level=4;
         board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), new Square(GRASS)},
             {null, new Square(GRASS), new Square(GRASS)},
@@ -41,7 +42,7 @@ public class LadybirdTest {
         System.out.println("move_general");
         Ladybird instance = (Ladybird) animals[0];
         Position expResult = new Position(0, 2); //.next(Direction.EAST);
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level*/ animals);
         assertEquals(expResult, result);
     }
     
@@ -58,7 +59,7 @@ public class LadybirdTest {
         });
         Ladybird instance = (Ladybird) animals[0];
         Position expResult = null; //.next(Direction.EAST);
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
     
@@ -71,7 +72,7 @@ public class LadybirdTest {
         Ladybird instance = (Ladybird) animals[0];
         animals[1].setPositionOnBoard(new Position(0, 2));
         Position expResult = new Position(0, 1); //don't move
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
     

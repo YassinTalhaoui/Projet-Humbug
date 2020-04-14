@@ -12,8 +12,19 @@ import static g54892.humbug.model.Direction.WEST;
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Position {
-    private final int row;
-    private final int column;
+    private /*final*/ int row;
+    private /*final*/ int column;
+
+    public Position() {
+        //super();
+    }
+
+    
+    
+
+   
+    
+    
     
     /**
      * Constructor of Position on the board.
@@ -24,6 +35,8 @@ public class Position {
         this.row = row;
         this.column = column;
     }
+  
+    
     
     /**
      * Simple getter of row.
@@ -33,6 +46,8 @@ public class Position {
         return row;
     }
 
+    
+
     /**
      * Simple getter of column.
      * @return column of Position.
@@ -41,6 +56,7 @@ public class Position {
         return column;
     }
     
+   
     /**
      * 
      * @return the hash code of a Position.

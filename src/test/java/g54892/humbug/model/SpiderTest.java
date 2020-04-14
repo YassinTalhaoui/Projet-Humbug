@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class SpiderTest {
-    
+    private int level;
     private Board board;
     private Animal[] animals;
     
     @BeforeEach
     public void setUp() {
+         level=4;
         board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), null},
             {null, new Square(GRASS), new Square(GRASS)},
@@ -40,7 +41,7 @@ public class SpiderTest {
         System.out.println("move and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall.
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
 
@@ -57,7 +58,7 @@ public class SpiderTest {
         });
         Spider instance = (Spider) animals[0];
         Position expResult = null;
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
 
@@ -75,7 +76,7 @@ public class SpiderTest {
         animals[1] = new Snail(new Position(0, 2));
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0,1);
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
     /**
@@ -87,7 +88,7 @@ public class SpiderTest {
         Spider instance = (Spider) animals[0];
         animals[1].setPositionOnBoard(new Position(0, 1));
         Position expResult = new Position(0, 0); //don't move
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST, /*level,*/animals);
         assertEquals(expResult, result);
     }
 
@@ -99,7 +100,7 @@ public class SpiderTest {
         System.out.println("move next case null and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall
-        Position result = instance.move(board, Direction.SOUTH, animals);
+        Position result = instance.move(board, Direction.SOUTH,/*level,*/ animals);
         assertEquals(expResult, result);
     }
 
@@ -120,7 +121,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 2);
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
         assertFalse(animals[0].isOnStar());
         assertFalse(board.getSquareType(new Position(0, 1)) == GRASS);
@@ -143,7 +144,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 2);
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
         assertTrue(animals[0].isOnStar());
         assertEquals(GRASS, board.getSquareType(result));
@@ -168,7 +169,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(1, 1); //don't move.
-        Position result = instance.move(board, Direction.EAST, animals);
+        Position result = instance.move(board, Direction.EAST,/* level,*/animals);
         assertEquals(expResult, result);
     }
 
@@ -191,7 +192,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 1); //don't move.
-        Position result = instance.move(board, Direction.WEST, animals);
+        Position result = instance.move(board, Direction.WEST, /*level,*/animals);
         assertEquals(expResult, result);
     }
 

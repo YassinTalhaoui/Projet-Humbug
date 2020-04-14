@@ -10,6 +10,11 @@ import static g54892.humbug.model.SquareType.STAR;
  */
 public class Spider extends Animal {
 
+    public Spider() {
+    }
+
+    
+    
     /**
      * Constructor of positionOnBoard.
      * @param positionOnBoard the current position of the animals.
@@ -26,7 +31,7 @@ public class Spider extends Animal {
      * @return The deplacement of one of the spiders on the board.
      */
     @Override
-    public Position move(Board board, Direction direction, Animal... animals) {
+    public Position move(Board board, Direction direction,/*int level,*/ Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree = true;
 
@@ -40,7 +45,7 @@ public class Spider extends Animal {
             if (animals[1].getPositionOnBoard().equals(pos.next(direction))) {
                 return pos;
             }
-            if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
+            if (isFree && /*Board.getInitialBoard()*/board.isInside(pos.next(direction))) {
                 if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
                     return pos;
                 }
@@ -57,7 +62,7 @@ public class Spider extends Animal {
         int i = 0;
         while (i < animals.length) {
 
-            Spider sp = new Spider(pos);
+           // Spider sp = new Spider(pos);
             if (board.getSquares()[animals[i].getPositionOnBoard().getRow()][animals[i].getPositionOnBoard().getColumn()].getType().equals(STAR)) {
                 animals[i].setOnStar(true);
             }

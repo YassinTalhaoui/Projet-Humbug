@@ -9,7 +9,7 @@ import static g54892.humbug.model.SquareType.STAR;
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Snail extends Animal {
-
+//private int level;
     /**
      * Construcor of positionOnBoard. 
      * @param positionOnBoard the current position of the animals.
@@ -17,36 +17,42 @@ public class Snail extends Animal {
     public Snail(Position positionOnBoard) {
         super(positionOnBoard);
     }
+
+    public Snail() {
+    }
+    
+    
     
     /**
      * Moves the given snails on the gaming board.
      * @param board the gaming board.
      * @param direction the direction of the deplacement.
+     * @param level
      * @param animals represents one or a lot of snails.
      * @return The deplacement of one of the snails on the board.
      */
     @Override
-    public Position move(Board board, Direction direction, Animal... animals) {
+    public Position move(Board board, Direction direction, /*int level ,*/Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree = true;
-        
+        //int level ;
         for (Animal animal : animals) {
-            if (board.getSquare(pos).hasWall(direction)) {
+            if (board/*Level.getLevel(level).getBoard()*/.getSquare(pos).hasWall(direction)) {
                 return nextWall(board, direction, animals);
             }
             if (animal.getPositionOnBoard().equals(pos.next(direction))) {
                 return pos;
-            } else if (!Board.getInitialBoard().isInside(pos.next(direction))) {
+            } else if (!/*Level.getLevel(level).getBoard()*//*Board.getInitialBoard(level)*/board.isInside(pos.next(direction))) {
                 return null;
             }
-            if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
-                if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
+            if (isFree && board/*Board.getInitialBoard(level)*//*Level.getLevel(level).getBoard()*/.isInside(pos.next(direction))) {
+                if (board/*Level.getLevel(level).getBoard()*/.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
                     return pos;
                 }
-                if (board.getSquareType(pos.next(direction)) == STAR) {
+                if (board/*Level.getLevel(level).getBoard()*/.getSquareType(pos.next(direction)) == STAR) {
                     animal.setOnStar(true);
                     if (isOnStar()) {
-                        board.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);
+                        board/*Level.getLevel(level).getBoard()*/.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);
                         //board.getSquares()[board.getNbRow() - 1][board.getNbColumn() - 1].setType(GRASS);
                         snailToNull(animals);
                     }
@@ -65,7 +71,9 @@ public class Snail extends Animal {
         Animal snail = new Snail(getPositionOnBoard());
         for (Animal animal : animals) {
             if (animal.isOnStar()) {
-                snail = null;
+                snail.setPositionOnBoard(null);/* = null;*/
+               
+                
             }
         }
     }
@@ -89,14 +97,27 @@ public class Snail extends Animal {
 
     }
 
+    @Override
+    public String toString() {
+        return "Snail{" + '}';
+    }
+
+   
+
     /**
      * Represents an object into a String.
      * @return the String itself.
      */
-    @Override
+   /* @Override
     public String toString() {
         return "Snail";
-    }
+    }*/
+
+   /* @Override
+    public Position move(Board board, Direction direction, Animal... animals) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
+    
     
 }
     

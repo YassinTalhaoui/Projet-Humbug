@@ -10,6 +10,11 @@ import static g54892.humbug.model.SquareType.STAR;
  */
 public class Grasshopper extends Animal{
 
+    public Grasshopper() {
+    }
+    
+    
+
      /**
      * Construcor of positionOnBoard. 
      * @param positionOnBoard the current position of the animals.
@@ -26,7 +31,7 @@ public class Grasshopper extends Animal{
      * @return The deplacement of one of the grasshoppers on the board.
      */
     @Override
-    public Position move(Board board, Direction direction, Animal... animals) {
+    public Position move(Board board, Direction direction,/*int level,*/ Animal... animals) {
         Position pos = super.getPositionOnBoard();
         //boolean isFree = true;
         for (Animal animal : animals) {

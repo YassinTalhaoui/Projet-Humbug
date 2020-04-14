@@ -14,6 +14,11 @@ public class Square {
     private boolean westWall;
     private boolean eastWall;
 
+    public Square() {
+    }
+
+    
+    
     /**
      * Constructor of Square on the board.
      * @param type Square is grass or star.

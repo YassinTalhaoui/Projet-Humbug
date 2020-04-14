@@ -37,6 +37,22 @@ public interface Model {
      * @param position a given position.
      * @param direction a given direction.
      */
-    void move(Position position, Direction direction);
+    void move(Position position, Direction direction, int level);
 
+    /**
+     * 
+     * @return 
+     */
+    int getRemainingMoves();
+    
+    /**
+     * 
+     * @return 
+     */
+    LevelStatus getLevelStatus();
+
+    
+    
+    
+    
 }

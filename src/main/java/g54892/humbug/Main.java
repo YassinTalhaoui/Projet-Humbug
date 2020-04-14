@@ -19,9 +19,9 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller(new Game(), new View());
-        controller.startGame();
+        controller.startGame(3);
         
-        
+         
          /*System.out.println(SOUTH.opposite());
         System.out.println(EAST.opposite());
         System.out.println(WEST.opposite());

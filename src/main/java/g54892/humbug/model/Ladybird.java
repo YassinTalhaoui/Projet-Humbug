@@ -10,6 +10,11 @@ import static g54892.humbug.model.SquareType.STAR;
  */
 public class Ladybird extends Animal{
 
+    public Ladybird() {
+    }
+    
+    
+
     /**
      * Construcor of positionOnBoard. 
      * @param positionOnBoard the current position of the animals.
@@ -26,11 +31,11 @@ public class Ladybird extends Animal{
      * @return The deplacement of one of the ladybirds on the board.
      */
     @Override
-    public Position move(Board board, Direction direction, Animal... animals) {
+    public Position move(Board board, Direction direction,/*int level,*/ Animal... animals) {
         Position pos = super.getPositionOnBoard();
         boolean isFree=true;
         
-        if (isFree && Board.getInitialBoard().isInside(pos.next(direction))) {
+        if (isFree && /*Board.getInitialBoard()*/board.isInside(pos.next(direction))) {
            
                 if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
                     return pos;

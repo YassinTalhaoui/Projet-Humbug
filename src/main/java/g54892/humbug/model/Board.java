@@ -14,6 +14,11 @@ import java.util.Arrays;
 public class Board {
     private Square[][] squares;
 
+    public Board() {
+    }
+
+    
+    
     /**
      * Simple getter of Squares[][].
      * @return a two dimensional squares array.
@@ -34,18 +39,19 @@ public class Board {
      * Returns the board of the first level.
      * @return the gaming board.
      */
-    public static Board getInitialBoard(){
-        Board board = new Board(new Square[][]{
+    public static Board getInitialBoard(int level){
+        /*Board board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS),null},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
-        });
-        Position pos = new Position(0, 1);
+        });*/
+       Board board= Level.getLevel(level).getBoard();
+       /* Position pos = new Position(0, 1);
         board.getSquare(pos).setEastWall(true);
-        Position posi = new Position(1, 1);
-        board.getSquare(posi).setNorthWall(true);
-        Position posis = new Position(1, 2);
-        board.getSquare(posis).setEastWall(true);
+         pos = new Position(1, 1);
+        board.getSquare(pos).setWestWall(true);
+         pos = new Position(1, 2);
+        board.getSquare(pos).setEastWall(true);*/
 
         return board;
     }

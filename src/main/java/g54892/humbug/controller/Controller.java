@@ -1,9 +1,13 @@
 
 package g54892.humbug.controller;
 
+import g54892.humbug.model.Board;
 import g54892.humbug.model.Direction;
+import g54892.humbug.model.Level;
+import g54892.humbug.model.LevelStatus;
 import g54892.humbug.model.Model;
 import g54892.humbug.model.Position;
+import g54892.humbug.model.SquareType;
 import g54892.humbug.view.text.InterfaceView;
 
 /**
@@ -29,24 +33,70 @@ public class Controller {
      * Starts the game while level isn't finish and 
      * no animals has fallen.
      */
-    public void startGame(){
-        game.startLevel(1);
+    public void startGame(int level){
+        game.startLevel(level);
+        //Level.getLevel( level);
+        //Level.getLevel(1);
+        System.out.println(LevelStatus.NOT_STARTED);
+        //Level.getLevel(level).getAnimals();
+       //int i=0;
+       //while(i<game.getAnimals().length){
+      int i=game.getAnimals().length-1;
+     //int i = Level.getLevel(level).getAnimals().length-1;
+        while(i>=0){
+        /* if(game.getAnimals()[i].isOnStar()){
+                i--;
+            }*/
+       // Level.getLevel(level).getAnimals()[i].setOnStar(false);
+       // System.out.println(LevelStatus.NOT_STARTED);
+        game.getAnimals()[i].setOnStar(false);
+//         game.getAnimals()[i--].setOnStar(false);
+        
+        while(/*!game.levelIsOver()*/  !this.game.getAnimals()[i].isOnStar()/*! Level.getLevel(level).getAnimals()[i].isOnStar() */){
        
-        while(!game.levelIsOver() && !game.getAnimals()[0].isOnStar()){
-            view.displayBoard(game.getBoard(), game.getAnimals());
+            // game.getAnimals()[i].setOnStar(false);
+            view.displayBoard(this.game.getBoard(), this.game.getAnimals());
+            //view.displayBoard(game.getBoard(), this.game.getAnimals());
             System.out.println("");
+             /*view.displayBoard(Level.getLevel(level).getBoard(), Level.getLevel(level).getAnimals());
+            System.out.println("");*/
             try{
-                Position pos = view.askPosition();               
-                Direction direction = view.askDirection();
-                game.move(pos, direction);
-                
+           /*      view.displayBoard(Level.getLevel(level).getBoard(), Level.getLevel(level).getAnimals());
+            System.out.println("");*/
+                //view.displayBoard(game.getBoard(), game.getAnimals());
+             /*   view.displayBoard(Level.getLevel(level).getBoard(), Level.getLevel(level).getAnimals());
+            System.out.println("");*/
+              
+             Position pos = view.askPosition(level); 
+             
+             Direction direction = view.askDirection();
+             //game.move(pos, direction);
+               game.move(pos, direction,level);
             } catch (Exception e){
                 view.displayError("erreur !!!");
             }
+            
+           /*if(this.game.getAnimals()[i].isOnStar()){
+                i--;
+            }*/
         }
-        System.out.println("Felicitation vous etes le gagnant !!!!!!!!!");
+         //if(this.game.getAnimals()[i].isOnStar()){
+          //      i--;
+           // }
+          // i--;
+        //}
+        //System.out.println("Felicitation vous etes le gagnant !!!!!!!!!");
+        if(game.getAnimals()[i].isOnStar()/*Level.getLevel(level).getAnimals()[i].isOnStar()*/){
+            //System.out.format(" %2s ", " | * |");
+                i--;
+            }
+       
+          System.out.println(LevelStatus.WIN);
+         
+    
     }
-  
+      
+    }
     /**
      * This object (which is already a string!) is itself returned.
      * @return  the string itself.

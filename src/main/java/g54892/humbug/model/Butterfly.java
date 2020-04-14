@@ -10,6 +10,11 @@ import static g54892.humbug.model.SquareType.STAR;
  */
 public class Butterfly extends Animal{
 
+    public Butterfly() {
+    }
+    
+    
+
     /**
      * Construcor of positionOnBoard. 
      * @param positionOnBoard the current position of the animals.
@@ -26,7 +31,7 @@ public class Butterfly extends Animal{
      * @return The deplacement of one of the butterly on the board.
      */
     @Override
-    public Position move(Board board, Direction direction, Animal... animals) {
+    public Position move(Board board, Direction direction,/*int level,*/ Animal... animals) {
          Position pos = super.getPositionOnBoard();
         for (Animal animal : animals) {
             pos=pos.next(direction);
