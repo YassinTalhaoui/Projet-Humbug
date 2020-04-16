@@ -18,9 +18,12 @@ import g54892.humbug.view.text.View;
 public class Main {
 
     public static void main(String[] args) {
+        int i =1;
+         while(i<50){
         Controller controller = new Controller(new Game(), new View());
-        controller.startGame(3);
-        
+        controller.startGame(i);
+        i++;
+    }
          
          /*System.out.println(SOUTH.opposite());
         System.out.println(EAST.opposite());

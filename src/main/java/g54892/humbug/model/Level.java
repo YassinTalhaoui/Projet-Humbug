@@ -64,7 +64,7 @@ public class Level {
      * @return playing level.
      */
     public static Level getLevel(int level){
-        switch(level){
+       /* switch(level){
             case 1:
             Board board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS),null},
@@ -140,8 +140,8 @@ public class Level {
             nMoves=4;
               l=new Level(board, animals, nMoves);
               return l;
-        }
-        return null;
+        }*/
+        return readLevel(level);
         
     }
 

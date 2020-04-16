@@ -64,6 +64,7 @@ public class Game implements Model{
      */
     public void startLevel(int level) {
  this.animals= Level.getLevel(level).getAnimals();
+ // this.animals= Level.readLevel(level).getAnimals();
         /*this.animals = new Animal[]{
            new Snail(new Position(0, 0)),
            new Snail(new Position(1, 1)),
@@ -72,6 +73,7 @@ public class Game implements Model{
 
         //this.board = Board.getInitialBoard();
          this.board= Level.getLevel(level).getBoard();
+        // this.board= Level.readLevel(level).getBoard();
         //this.animals = animals;
       
       
@@ -86,7 +88,7 @@ public class Game implements Model{
      * @param direction
      * @return true if the level is over, false otherwise.
      */
-    public boolean levelIsOver() {
+    /*public boolean levelIsOver() {
         if (board == null) {
             throw new IllegalArgumentException("board ne peut pas etre null " + board);
         }
@@ -104,7 +106,7 @@ public class Game implements Model{
         if (animals.length == i) {
             onStar = true;
         }
-        return onStar;*/
+        return onStar;
  for (Animal animal : animals) {
             if (!animal.isOnStar()){
                 return false;
@@ -112,14 +114,14 @@ public class Game implements Model{
         }
         return true;
 
-    }
+    }*/
 
     /**
      * Makes the move if allowed.
      * @param position a given position.
      * @param direction a given direction.
      */
-    public void move(Position position, Direction direction, int level) {
+    public void move(Position position, Direction direction) {
         if (board == null) {
             throw new IllegalArgumentException("board ne peut pas etre null " + board);
         }
@@ -138,7 +140,7 @@ public class Game implements Model{
                 //System.out.println("l' animal tombe!");
                 System.out.println(LevelStatus.FAIL);
                 
-            } else {
+            }  else {
                 
                 if(animals[i].getPositionOnBoard().equals(position)/*Level.getLevel(level).getAnimals()[i].getPositionOnBoard().equals(position)*/){
                 position = this.animals[i].move(board, direction,/* level,*/ animals);
@@ -151,6 +153,7 @@ public class Game implements Model{
                 this.animals[i].setPositionOnBoard(position);
                // Level.getLevel(level).getAnimals()[i].setPositionOnBoard(position);
                 System.out.println(LevelStatus.IN_PROGRESS);
+                
                 remainingMoves++;
                 }
             }
@@ -170,8 +173,20 @@ public class Game implements Model{
     }
 
     @Override
-    public LevelStatus getLevelStatus() {
-        
+    public LevelStatus getLevelStatus(int level) {
+        currentLevel=1;
+        for (Animal animal : animals) {
+            if (animal.isOnStar() &&  remainingMoves<Level.getLevel(level).getnMoves()){
+                return LevelStatus.WIN;
+            }
+             if(getRemainingMoves()>Level.getLevel(level).getnMoves()){
+                  animal.setOnStar(true);
+                 System.out.println(LevelStatus.FAIL+": Nombres de deplacement autorisés atteind!");
+                 
+             }
+             currentLevel++;
+        }
+       
         return null;
     }
 

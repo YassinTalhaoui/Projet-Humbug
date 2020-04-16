@@ -30,14 +30,14 @@ public interface Model {
      * Indicates if the level is over.
      * @return true if the level is over, false otherwise.
      */
-    boolean levelIsOver();
+    /*boolean levelIsOver();*/
 
     /**
      * Makes the move if allowed.
      * @param position a given position.
      * @param direction a given direction.
      */
-    void move(Position position, Direction direction, int level);
+    void move(Position position, Direction direction);
 
     /**
      * 
@@ -49,7 +49,7 @@ public interface Model {
      * 
      * @return 
      */
-    LevelStatus getLevelStatus();
+    LevelStatus getLevelStatus(int level);
 
     
     

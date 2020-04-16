@@ -37,4 +37,5 @@ public interface InterfaceView{
      */
     void displayError(String message);
 
+    void displayRemainingMoves(int remainingMoves);
 }          

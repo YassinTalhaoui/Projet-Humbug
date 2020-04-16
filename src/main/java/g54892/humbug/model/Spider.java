@@ -39,43 +39,70 @@ public class Spider extends Animal {
             return nextWall(board, direction, animals);
         }
         for (Animal animal : animals) {
+        
+           
+           
             if (animal.getPositionOnBoard().equals(pos.next(direction))) {
                 return getPositionOnBoard();
             }
-            if (animals[1].getPositionOnBoard().equals(pos.next(direction))) {
-                return pos;
-            }
-            if (isFree && /*Board.getInitialBoard()*/board.isInside(pos.next(direction))) {
+           /* if (animal.getPositionOnBoard().equals(pos.next(direction))) {
+                return getPositionOnBoard();
+            }*/
+           
+            if (isFree && board.isInside(pos.next(direction))) {
                 if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
                     return pos;
                 }
+                 if (animal.getPositionOnBoard().equals(pos.next(direction))) {
+                return pos;
+            }
+                
 
             }
+            
+           
+           
+              
+            
             pos = pos.next(direction);
             setPositionOnBoard(pos);
+            
+            
+           
         }
 
         if (!board.isInside(pos.next(direction))) {
             return null;
         }
+        
 
         int i = 0;
-        while (i < animals.length) {
-
+       while (i < animals.length) {
+           /* if (animals[i].getPositionOnBoard().equals(pos.next(direction))) {
+                return getPositionOnBoard();
+            }*/
            // Spider sp = new Spider(pos);
             if (board.getSquares()[animals[i].getPositionOnBoard().getRow()][animals[i].getPositionOnBoard().getColumn()].getType().equals(STAR)) {
                 animals[i].setOnStar(true);
             }
+           
             if (animals[i].isOnStar()) {
                 board.getSquares()[animals[i].getPositionOnBoard().getRow()][animals[i].getPositionOnBoard().getColumn()].setType(GRASS);
-            } else {
+                spiderToNull(animals);
+            } /*else {
                 animals[i].setOnStar(false);
-            }
+            }*/
+            
+            
             i++;
-        }
-
-        return getPositionOnBoard();
+             
     }
+        
+
+         return getPositionOnBoard();
+
+    }
+
 
     /**
      * @param board the gaming board.
@@ -95,6 +122,19 @@ public class Spider extends Animal {
         return null;
 
     }
+    
+     private void spiderToNull(Animal... animals) {
+        Animal spider = new Spider(getPositionOnBoard());
+        for (Animal animal : animals) {
+            if (animal.isOnStar()) {
+                spider.setPositionOnBoard(null);/* = null;*/
+               
+                
+            }
+        }
+    }
+    
+   
 
 }
     

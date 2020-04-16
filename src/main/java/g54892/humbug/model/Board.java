@@ -45,6 +45,7 @@ public class Board {
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });*/
+    //  Board board=  Level.readLevel(level).getBoard();
        Board board= Level.getLevel(level).getBoard();
        /* Position pos = new Position(0, 1);
         board.getSquare(pos).setEastWall(true);

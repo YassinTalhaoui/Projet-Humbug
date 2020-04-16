@@ -85,8 +85,12 @@ public class SpiderTest {
     @Test
     public void testMove_next_notfree() {
         System.out.println("move next case not free");
-        Spider instance = (Spider) animals[0];
-        animals[1].setPositionOnBoard(new Position(0, 1));
+         animals = new Animal[] {
+            new Snail(new Position(0, 1)),
+            new Spider(new Position(1, 2))
+        };
+        Spider instance = (Spider) animals[1];
+        animals[1].setPositionOnBoard(new Position(0, 0));
         Position expResult = new Position(0, 0); //don't move
         Position result = instance.move(board, Direction.EAST, /*level,*/animals);
         assertEquals(expResult, result);

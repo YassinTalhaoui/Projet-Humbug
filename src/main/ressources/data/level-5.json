@@ -9,18 +9,18 @@
             [null, null, {"type": "STAR", "southWall": true}, null]
         ]},
     "animals": [{
-            "type": "Spider",
-            "positionOnBoard": {
-                "row": 1,
-                "column": 0
-            }
-        },{
             "type": "Snail",
             "positionOnBoard": {
                 "row": 1,
                 "column": 2
             }
-        } 
+        },{
+            "type": "Spider",
+            "positionOnBoard": {
+                "row": 1,
+                "column": 0
+            }
+        }
     ],
     "nMoves": 4
 }

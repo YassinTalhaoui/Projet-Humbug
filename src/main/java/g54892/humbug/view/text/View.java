@@ -29,104 +29,66 @@ public class View implements InterfaceView{
      * @param animals the given animals.
      */
     public void displayBoard(Board board/*, Direction direction*/ ,Animal... animals) {
+        int s=0;
         String[][] game = new String[board.getNbRow()][board.getNbColumn()];
         for ( int i=0 ; i < game.length ; i++) {
             System.out.println("");
-            System.out.println("________________________");
-            for (int j = 0; j < game[i].length; j++) {
-                Position pos = new Position(i, j);
+            System.out.println("_______________________________________________");
+            
+            for (int j = 0; j < game[i].length ; j++) {
+                Position pos = new Position(i, j); 
+                
+               //for (Animal animal : animals) {
+                         
+                          //  if (pos.equals(animal.getPositionOnBoard())) {
+                           // System.out.format(" %2s ", " | S |");
+                           // }
+                        
+                    //}
+               if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS) ){
+                   
+                   //int s=0;
+                    if (pos.equals(animals[s].getPositionOnBoard())) {
+                            System.out.format(" %2s ", " | S |");
+                            
+                            if(animals.length>1){
+                            s++;
+                            }
+                            //s++;
+                            
+                            }else
+                       if (board.isInside(pos) &&board.getSquare(pos).hasWall(SOUTH)){
+                            System.out.format(" %2s ", " | _ |");
+                           
+                            }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(NORTH)){
+                               
+                            System.out.format(" %2s ", " | ¯ |");
+                            }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(WEST)){
+                            System.out.format(" %2s ", " ||  |");
+                             
+                            }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(EAST)){
+                            System.out.format(" %2s ", " |  ||");
+                            }else{
+                                System.out.format(" %2s ", " |   |");
+                            }
                
-              /* if (pos.equals(animals[s].getPositionOnBoard())) {
-                   System.out.format(" %2s ", " | s |");
-               }
-               s++;
-                }*/   
-                   
-              // while(s<animals.length&& board.getSquareType(pos).equals(GRASS)){
-                if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
-                //     int s=0;
-               // while(s<animals.length){
-             /*  if (pos.equals(animals[i].getPositionOnBoard())) {
-                   System.out.format(" %2s ", " | s |");
-               }*/
-              // s++;
-                
-                   // int s=0;
-                   // while(s<animals.length){
-                   //  if (pos.equals(animals[s].getPositionOnBoard())) {
-                    
-                    /*   // System.out.format(" %2s ", " | s |");
-                       //System.out.format(" %2s ", "|   | \n | s | ");
-                       // System.out.print("");
-                    } */
-                    
-               // }
-               /*if(animals[i].isOnStar()==true){
-                    System.out.format(" %2s ", " | * |");
-               }else*/
-                if (pos.equals(animals[0].getPositionOnBoard())) {
-                   // if (pos.equals(animals[i].getPositionOnBoard())) {
-                        System.out.format(" %2s ", " | s |");
-                       //System.out.format(" %2s ", "|   | \n | s | ");
-                       // System.out.print("");         
-                }  
-                else if (board.isInside(pos) &&board.getSquare(pos).hasWall(SOUTH)){
-                         System.out.format(" %2s ", " | _ |");
-                         // System.out.format(" %2s ", "| _ | \n | s | ");
-                   }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(NORTH)){
-                  System.out.format(" %2s ", " | ¯ |");
-                 // System.out.format(" %2s ", "| - | \n | s | ");
-                   }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(WEST)){
-                  System.out.format(" %2s ", " ||  |");
-                  // System.out.format(" %2s ", "||  | \n | s | ");
-                   }else if (board.isInside(pos) &&board.getSquare(pos).hasWall(EAST)){
-                  System.out.format(" %2s ", " |  ||");
-                 // System.out.format(" %2s ", "|  || \n | s | ");
-              }else{
-                        System.out.format(" %2s ", " |   |");
-                        // System.out.format(" %2s ", "|   | \n |   | ");
-                    }    
-            }  else if (board.isInside(pos) && board.getSquareType(pos).equals(STAR) ) {                
-                    System.out.format(" %2s ", " | * |");
-                   /* if(animals[i].isOnStar()==true){
+            }
+                      else if (board.isInside(pos) && board.getSquareType(pos).equals(STAR) ) {                
                         System.out.format(" %2s ", " | * |");
-                    }*/
-                     //System.out.format(" %2s ", "|   | \n | * | ");      
-                } else if (!board.isInside(pos)) {
-                    //game[i][j]=TerminalColor.BG_GREEN+"  "+TerminalColor.DEFAULT;
-                    System.out.format(" %2s ", " | X |");
-                    // System.out.format(" %2s ", "| X | \n | X | ");
-                   
-                }else if(animals[i].isOnStar()==false){
-                    System.out.format(" %2s ", " | * |");
-                
-                 }
-            
-            
-               /*  if(board.getSquareType(pos)!=(null)&& board.getSquareType(pos)!=(GRASS)&& board.getSquareType(pos)!=(STAR)){
-                     System.out.format(" %2s ", " | * |");
-                }*/
-                
-              //  s++;
-               // }
-            
-                /*  if (board.isInside(pos) &&board.getSquare(pos).hasWall(SOUTH)){
-                  System.out.format(" %2s ", " | _ |");
-              }*/
-               /* if(board.getSquares()[animals[0].getPositionOnBoard().getRow()][animals[0].getPositionOnBoard().getColumn()].hasWall(SOUTH)){
-                   System.out.format(" %2s ", " | _ |");
-                       
-                    
-                }*/
-              /*if (board.isInside(pos) &&board.getSquare(pos).hasWall(SOUTH)){
-                  System.out.format(" %2s ", " | _ |");
-              }*/
-              
-        
-    }
-    }
+                         
+                    } else if (!board.isInside(pos)) {
+                        System.out.format(" %2s ", " | X |");
+                    }
+               
+            }              
+        }                 
     }
     
+    public void displayRemainingMoves( int remainingMoves){
+        System.out.println("Nombres de déplacemets restants: "+remainingMoves);
+      
+       
+    }
 
     /**
      * Displays a message for error.
@@ -134,7 +96,8 @@ public class View implements InterfaceView{
      * @param message a String to display;
      */
     public void displayError(String message) {
-        message = "ERREUR !!!";
+        System.out.println("ERREUR !!!");
+       // message = "ERREUR !!!";
 
     }
     
