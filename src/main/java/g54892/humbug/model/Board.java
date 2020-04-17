@@ -1,64 +1,55 @@
-
 package g54892.humbug.model;
 
-import static g54892.humbug.model.Direction.SOUTH;
-import static g54892.humbug.model.SquareType.GRASS;
-import static g54892.humbug.model.SquareType.STAR;
 import java.util.Arrays;
 
 /**
  * Represents de game board made up of squares when there are any.
- * 
+ *
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Board {
+
     private Square[][] squares;
 
+    /**
+     * Constructor of Board.
+     */
     public Board() {
     }
 
-    
-    
     /**
      * Simple getter of Squares[][].
+     *
      * @return a two dimensional squares array.
      */
     public Square[][] getSquares() {
         return squares;
     }
-    
+
     /**
      * Constructor of the Board.
-     * @param squares a 2-dimensional array. 
+     *
+     * @param squares a 2-dimensional array.
      */
     public Board(Square[][] squares) {
         this.squares = squares;
     }
-    
+
     /**
      * Returns the board of the first level.
+     *
+     * @param level an integer.
      * @return the gaming board.
      */
-    public static Board getInitialBoard(int level){
-        /*Board board = new Board(new Square[][]{
-            {new Square(GRASS), new Square(GRASS),null},
-            {null, new Square(GRASS), new Square(GRASS)},
-            {null, null, new Square(STAR)}
-        });*/
-    //  Board board=  Level.readLevel(level).getBoard();
-       Board board= Level.getLevel(level).getBoard();
-       /* Position pos = new Position(0, 1);
-        board.getSquare(pos).setEastWall(true);
-         pos = new Position(1, 1);
-        board.getSquare(pos).setWestWall(true);
-         pos = new Position(1, 2);
-        board.getSquare(pos).setEastWall(true);*/
+    public static Board getInitialBoard(int level) {
+        Board board = Level.getLevel(level).getBoard();
 
         return board;
     }
-    
+
     /**
      * Cheks that the given position is in the board.
+     *
      * @param pos a given position.
      * @return true if the position is in the board, false otherwise.
      */
@@ -78,64 +69,61 @@ public class Board {
 
     /**
      * Returns the type of the square whose position is given.
+     *
      * @param pos a given position.
      * @return the position of the given square.
      */
-    
     public SquareType getSquareType(Position pos) {
-        if (squares[pos.getRow()][pos.getColumn()] == null) {
+        if (pos == null) {
             throw new IllegalArgumentException("position en dehors du plateau de jeu " + pos);
         }
         SquareType type = squares[pos.getRow()][pos.getColumn()].getType();
-        Position currentPos = null;
-        
-        for (Square[] square : squares) {
-            for (Square square1 : square) {
-                if (pos == currentPos) {
-                    type = squares[pos.getRow()][pos.getColumn()].getType();
-                }
-            }
-        }
+
         return type;
     }
 
     /**
      * Counts the numbers of rows of the gaming board.
+     *
      * @return the numbeer of rows
      */
-    public int getNbRow(){
-        int i;
-         for( i = 0; i<squares.length; i++){
-            for (Square square : squares[i]) {
-            }
-        }
-        return i;
+    public int getNbRow() {
+
+        return squares.length;
     }
-    
+
     /**
      * Counts the numbers of columns of the gaming board.
+     *
      * @return numbers of columns.
      */
-    public int getNbColumn(){
+    public int getNbColumn() {
         int j = 0;
         for (Square[] square : squares) {
-            for (j =0; j < square.length; j++) {
+            for (j = 0; j < square.length; j++) {
             }
         }
-        return j;        
+        return j;
     }
-    
+
+    /**
+     * Gives the square we are looking for
+     *
+     * @param pos a given Position.
+     * @return the desired square.
+     */
     public Square getSquare(Position pos) {
-    return squares[pos.getRow()][pos.getColumn()];
-}
-       
+        return squares[pos.getRow()][pos.getColumn()];
+    }
+
     /**
      * This object (which is already a string!) is itself returned.
-     * @return  the string itself.
-     */ 
+     *
+     * @return the string itself.
+     */
     @Override
     public String toString() {
         return "Board{" + "squares=" + Arrays.deepToString(squares) + '}';
     }
-    
+
 }

@@ -10,15 +10,9 @@
             [null, null, {"type": "STAR"},{"type": "STAR"}]
         ]},
     "animals": [{
-            "type": "Spider",
+            "type": "Grasshopper",
             "positionOnBoard": {
-                "row": 3,
-                "column": 2
-            }
-        },{
-            "type": "Snail",
-            "positionOnBoard": {
-                "row": 2,
+                "row": 0,
                 "column": 2
             }
         },{
@@ -28,12 +22,18 @@
                 "column": 2
             }
         },{
-            "type": "Grasshopper",
+            "type": "Snail",
             "positionOnBoard": {
-                "row": 0,
+                "row": 2,
                 "column": 2
             }
-        } 
+        },{
+            "type": "Spider",
+            "positionOnBoard": {
+                "row": 3,
+                "column": 2
+            }
+        }
     ],
     "nMoves": 5
 }

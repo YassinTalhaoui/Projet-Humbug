@@ -1,4 +1,3 @@
-
 package g54892.humbug.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,26 +7,29 @@ import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 /*import static org.junit.jupiter.api.Assertions.*;*/
 
 /**
- * Test Spider.  
-* @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
+ * Test Spider.
+ *
+ * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class SpiderTest {
-    private int level;
+
+  
     private Board board;
     private Animal[] animals;
-    
+
     @BeforeEach
     public void setUp() {
-         level=4;
+       
         board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), null},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
-        animals = new Animal[] {
+        animals = new Animal[]{
             new Spider(new Position(0, 0)),
             new Snail(new Position(1, 2))
         };
@@ -41,7 +43,7 @@ public class SpiderTest {
         System.out.println("move and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall.
-        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
     }
 
@@ -58,7 +60,7 @@ public class SpiderTest {
         });
         Spider instance = (Spider) animals[0];
         Position expResult = null;
-        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
     }
 
@@ -75,24 +77,25 @@ public class SpiderTest {
         });
         animals[1] = new Snail(new Position(0, 2));
         Spider instance = (Spider) animals[0];
-        Position expResult = new Position(0,1);
-        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
+        Position expResult = new Position(0, 1);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
     }
+
     /**
      * Test of move method, of class Snail.
      */
     @Test
     public void testMove_next_notfree() {
         System.out.println("move next case not free");
-         animals = new Animal[] {
+        animals = new Animal[]{
             new Snail(new Position(0, 1)),
             new Spider(new Position(1, 2))
         };
         Spider instance = (Spider) animals[1];
         animals[1].setPositionOnBoard(new Position(0, 0));
         Position expResult = new Position(0, 0); //don't move
-        Position result = instance.move(board, Direction.EAST, /*level,*/animals);
+        Position result = instance.move(board, Direction.EAST,animals);
         assertEquals(expResult, result);
     }
 
@@ -104,7 +107,7 @@ public class SpiderTest {
         System.out.println("move next case null and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall
-        Position result = instance.move(board, Direction.SOUTH,/*level,*/ animals);
+        Position result = instance.move(board, Direction.SOUTH, animals);
         assertEquals(expResult, result);
     }
 
@@ -119,13 +122,13 @@ public class SpiderTest {
             {null, new Square(GRASS), new Square(GRASS), null},
             {null, null, new Square(STAR), null}
         });
-        animals = new Animal[] {
+        animals = new Animal[]{
             new Spider(new Position(0, 0)),
             new Snail(new Position(0, 3))
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 2);
-        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
         assertFalse(animals[0].isOnStar());
         assertFalse(board.getSquareType(new Position(0, 1)) == GRASS);
@@ -142,18 +145,18 @@ public class SpiderTest {
             {null, new Square(GRASS), new Square(GRASS), null},
             {null, null, new Square(STAR), null}
         });
-        animals = new Animal[] {
+        animals = new Animal[]{
             new Spider(new Position(0, 0)),
             new Snail(new Position(0, 3))
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 2);
-        Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
         assertTrue(animals[0].isOnStar());
         assertEquals(GRASS, board.getSquareType(result));
     }
-    
+
     /**
      * Test of move method, of class Spider.
      */
@@ -173,7 +176,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(1, 1); //don't move.
-        Position result = instance.move(board, Direction.EAST,/* level,*/animals);
+        Position result = instance.move(board, Direction.EAST, animals);
         assertEquals(expResult, result);
     }
 
@@ -196,7 +199,7 @@ public class SpiderTest {
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(0, 1); //don't move.
-        Position result = instance.move(board, Direction.WEST, /*level,*/animals);
+        Position result = instance.move(board, Direction.WEST, animals);
         assertEquals(expResult, result);
     }
 

@@ -1,4 +1,3 @@
-
 package g54892.humbug.model;
 
 import static g54892.humbug.model.SquareType.GRASS;
@@ -9,31 +8,32 @@ import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Test Ladybird.
+ *
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class LadybirdTest {
-    
-   /* public LadybirdTest() {
+
+    /* public LadybirdTest() {
     }*/
     private int level;
-     private Board board;
+    private Board board;
     private Animal[] animals;
-    
-     @BeforeEach
+
+    @BeforeEach
     public void setUp() {
-        level=4;
+        level = 4;
         board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), new Square(GRASS)},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
-        animals = new Animal[] {
+        animals = new Animal[]{
             new Ladybird(new Position(0, 0)),
             new Spider(new Position(1, 2)),
             new Snail(new Position(1, 1))
         };
     }
-    
+
     /**
      * Test of move method, of class Ladybird.
      */
@@ -45,14 +45,14 @@ public class LadybirdTest {
         Position result = instance.move(board, Direction.EAST,/*level*/ animals);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of move method, of class Ladybird.
      */
     @Test
     public void testMove_next_notInside() {
         System.out.println("next case not inside");
-         board = new Board(new Square[][]{
+        board = new Board(new Square[][]{
             {new Square(GRASS), new Square(GRASS), null},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
@@ -62,8 +62,8 @@ public class LadybirdTest {
         Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
-    
-      /**
+
+    /**
      * Test of move method, of class Ladybird.
      */
     @Test
@@ -75,19 +75,19 @@ public class LadybirdTest {
         Position result = instance.move(board, Direction.EAST,/*level,*/ animals);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of move method, of class Ladybird.
      */
     @Test
     public void testMove_pass_onstar() {
         System.out.println("move pass on star and fall");
-         board = new Board(new Square[][]{
+        board = new Board(new Square[][]{
             {new Square(STAR), new Square(GRASS), new Square(GRASS)},
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
-         animals = new Animal[] {
+        animals = new Animal[]{
             new Ladybird(new Position(1, 2)),
             new Spider(new Position(0, 1)),
             new Snail(new Position(1, 1))
@@ -99,7 +99,7 @@ public class LadybirdTest {
         assertFalse(instance.isOnStar());
         assertFalse(board.getSquareType(new Position(0, 0)) == GRASS);
     }
-    
+
     /**
      * Test of move method, of class Ladybird.
      */
@@ -111,7 +111,7 @@ public class LadybirdTest {
             {null, new Square(GRASS), new Square(GRASS), null},
             {null, null, new Square(STAR), null}
         });
-        animals = new Animal[] {
+        animals = new Animal[]{
             new Ladybird(new Position(0, 0)),
             new Snail(new Position(0, 3))
         };
@@ -122,8 +122,8 @@ public class LadybirdTest {
         assertTrue(animals[0].isOnStar());
         assertEquals(GRASS, board.getSquareType(result));
     }
-    
-     /**
+
+    /**
      * Test of move method, of class Ladybird.
      */
     @Test
@@ -146,7 +146,7 @@ public class LadybirdTest {
         assertEquals(expResult, result);
     }
 
-     /**
+    /**
      * Test of move method, of class Ladybird.
      */
     @Test
@@ -164,6 +164,4 @@ public class LadybirdTest {
         assertEquals(expResult, result);
     }
 
-    
-    
 }

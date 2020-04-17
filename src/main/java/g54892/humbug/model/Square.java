@@ -1,46 +1,50 @@
-
 package g54892.humbug.model;
 
 /**
- * Square on the board. A square has a type grass or star and it's all.
- * A square doesn't know where it is on the board.
+ * Square on the board. A square has a type grass or star and it's all. A square
+ * doesn't know where it is on the board.
  *
  * @author Talhaoui Yassin (YT) <54892@etu.he2b.be>
  */
 public class Square {
+
     private SquareType type;
     private boolean northWall;
     private boolean southWall;
     private boolean westWall;
     private boolean eastWall;
 
+    /**
+     * Constructor of Square on the board.
+     */
     public Square() {
     }
 
-    
-    
     /**
      * Constructor of Square on the board.
+     *
      * @param type Square is grass or star.
      */
     public Square(SquareType type) {
-      this.type = type;
-      northWall = false;
-      southWall = false;
-      westWall = false;
-      eastWall = false;
+        this.type = type;
+        northWall = false;
+        southWall = false;
+        westWall = false;
+        eastWall = false;
     }
-    
+
     /**
      * Simple getter of type.
+     *
      * @return type of Square.
      */
     public SquareType getType() {
-      return type;
-    } 
+        return type;
+    }
 
     /**
      * Simple setter of type.
+     *
      * @param type type of square.
      */
     public void setType(SquareType type) {
@@ -49,38 +53,43 @@ public class Square {
 
     /**
      * Simple getter of northWall.
+     *
      * @return a boolean value.
      */
     public boolean isNorthWall() {
         return northWall;
     }
 
-     /**
+    /**
      * Simple getter of southWall.
+     *
      * @return a boolean value.
      */
     public boolean isSouthWall() {
         return southWall;
     }
 
-     /**
+    /**
      * Simple getter of westWall.
+     *
      * @return a boolean value.
      */
     public boolean isWestWall() {
         return westWall;
     }
 
-     /**
+    /**
      * Simple getter of eastWall.
+     *
      * @return a boolean value.
      */
     public boolean isEastWall() {
         return eastWall;
     }
-    
+
     /**
      * Simple setter of northWall.
+     *
      * @param northWall a boolean.
      */
     public void setNorthWall(boolean northWall) {
@@ -89,6 +98,7 @@ public class Square {
 
     /**
      * Simple setter of southWall.
+     *
      * @param southWall a boolean.
      */
     public void setSouthWall(boolean southWall) {
@@ -97,6 +107,7 @@ public class Square {
 
     /**
      * Simple setter of westWall.
+     *
      * @param westWall a boolean.
      */
     public void setWestWall(boolean westWall) {
@@ -105,14 +116,16 @@ public class Square {
 
     /**
      * Simple setter of eastWall.
+     *
      * @param eastWall a boolean.
      */
     public void setEastWall(boolean eastWall) {
         this.eastWall = eastWall;
     }
-    
+
     /**
      * Check if there is a wall in a given direction.
+     *
      * @param direction a given direction.
      * @return true if there is a wall in the given direction, false otherwise.
      */
@@ -125,17 +138,17 @@ public class Square {
                 break;
             case SOUTH:
                 if (southWall == true) {
-                     return southWall;
+                    return southWall;
                 }
                 break;
             case EAST:
                 if (eastWall == true) {
-                     return eastWall;
+                    return eastWall;
                 }
                 break;
             case WEST:
                 if (westWall == true) {
-                     return westWall;
+                    return westWall;
                 }
                 break;
             default:
@@ -144,13 +157,14 @@ public class Square {
         return false;
 
     }
-    
+
     /**
      * Represents an object into a String.
+     *
      * @return the String itself.
      */
     @Override
     public String toString() {
-       return ""+type+"";
-    } 
+        return "" + type + "";
+    }
 }
