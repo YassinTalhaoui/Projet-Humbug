@@ -100,7 +100,7 @@ public class Game implements Model {
         while (i < animals.length) {
             if (this.animals[i].move(board, direction, animals) == null /*|| !this.board.isInside(position)*/) {
                 System.out.println(LevelStatus.FAIL);
-
+                
             } else {
 
                 if (animals[i].getPositionOnBoard().equals(position)) {
@@ -133,6 +133,7 @@ public class Game implements Model {
 
         for (Animal animal : animals) {
           
+            
             if (animal.isOnStar() && remainingMoves<= Level.getLevel(level).getnMoves()) {
                 return LevelStatus.WIN;
             }

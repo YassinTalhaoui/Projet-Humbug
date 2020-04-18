@@ -52,7 +52,8 @@ public class Controller {
                     try {
                         Position pos = view.askPosition(level);
                         Direction direction = view.askDirection();
-                        game.move(pos, direction/*,level*/);
+                        game.move(pos, direction);
+                  
                         game.getLevelStatus(level);
                     } catch (Exception e) {
                         view.displayError("erreur !!!");

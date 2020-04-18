@@ -8,7 +8,9 @@
             [null, null, {"type": "GRASS"}, null],
             [null, null, {"type": "STAR", "southWall": true}, null]
         ]},
-    "animals": [{
+    "animals": [
+        
+        {
             "type": "Snail",
             "positionOnBoard": {
                 "row": 1,

@@ -12,7 +12,7 @@ import g54892.humbug.view.text.View;
 public class Main {
 
     public static void main(String[] args) {
-        int i = 3;     //On commence au niveau 1.
+        int i = 1;  //Entrez ici le niveau au quel vous désirez commencer.
         while (i < 50) {
             Controller controller = new Controller(new Game(), new View());
             controller.startGame(i);

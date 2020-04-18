@@ -103,9 +103,9 @@ public class BoardTest {
     @Test
     public void testGetSquareType_null() {
         System.out.println("get case type illegal argument");
-        Assertions.assertThrows(IllegalArgumentException.class,
+              Assertions.assertThrows(NullPointerException.class,
                 () -> {
-                    board.getSquareType(new Position(1, 0));
+                    SquareType squareType = board.getSquareType(new Position(1, 0));
                 });
     }
 
