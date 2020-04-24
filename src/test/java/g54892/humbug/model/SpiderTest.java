@@ -40,6 +40,11 @@ public class SpiderTest {
      */
     @Test
     public void testMove() {
+          board = new Board(new Square[][]{
+            {new Square(GRASS), new Square(GRASS), new Square(GRASS),null},
+            {null, new Square(GRASS), new Square(GRASS)},
+            {null, null, new Square(STAR)}
+        });
         System.out.println("move and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall.
@@ -58,6 +63,7 @@ public class SpiderTest {
             {null, new Square(GRASS), new Square(GRASS)},
             {null, null, new Square(STAR)}
         });
+       
         Spider instance = (Spider) animals[0];
         Position expResult = null;
         Position result = instance.move(board, Direction.EAST, animals);
@@ -90,10 +96,10 @@ public class SpiderTest {
         System.out.println("move next case not free");
         animals = new Animal[]{
             new Snail(new Position(0, 1)),
-            new Spider(new Position(1, 2))
+            new Spider(new Position(0, 0))
         };
         Spider instance = (Spider) animals[1];
-        animals[1].setPositionOnBoard(new Position(0, 0));
+       // animals[1].setPositionOnBoard(new Position(0, 0));
         Position expResult = new Position(0, 0); //don't move
         Position result = instance.move(board, Direction.EAST,animals);
         assertEquals(expResult, result);
@@ -104,6 +110,7 @@ public class SpiderTest {
      */
     @Test
     public void testMove_next_notinside() {
+       
         System.out.println("move next case null and fall");
         Spider instance = (Spider) animals[0];
         Position expResult = null; // fall
@@ -172,7 +179,7 @@ public class SpiderTest {
         board.getSquare(pos).setEastWall(true);
         animals = new Animal[]{
             new Spider(new Position(1, 1)),
-            new Snail(new Position(1, 2))
+            new Snail(new Position(0, 0))
         };
         Spider instance = (Spider) animals[0];
         Position expResult = new Position(1, 1); //don't move.

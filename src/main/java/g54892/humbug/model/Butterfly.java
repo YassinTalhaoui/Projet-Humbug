@@ -1,6 +1,5 @@
 package g54892.humbug.model;
 
-import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
 
 /**
@@ -36,36 +35,18 @@ public class Butterfly extends Animal {
     @Override
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
+        pos=pos.next(direction).next(direction);
         for (Animal animal : animals) {
-            pos = pos.next(direction);
-            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
-                pos = pos.next(direction);
-            }
-            if (!board.isInside(pos.next(direction))) {
+            if(!board.isInside(pos)){
                 return null;
             }
-            if (board.getSquare(pos.next(direction)).getType() == STAR) {
-                animal.setOnStar(true);
-                if (isOnStar()) {
-                    board.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);
-                    butterflyToNull(animals);
-                }
+            if (animal.getPositionOnBoard().equals(pos.next(direction))) {
+                 return pos.next(direction).next(direction);      
             }
+             if (board.getSquareType(pos.next(direction)) == STAR) {
+                animalToNull(direction, pos, board, animals);
+            }           
         }
-        return pos.next(direction);
-    }
-
-    /**
-     * Nullifies an animal if it's on a star.
-     *
-     * @param animals a bumbelbee.
-     */
-    private void butterflyToNull(Animal... animals) {
-        Animal butterfly = new Butterfly(getPositionOnBoard());
-        for (Animal animal : animals) {
-            if (animal.isOnStar()) {
-                butterfly = null;
-            }
-        }
+       return moveOneFlying(direction, board, animals).next(direction);
     }
 }

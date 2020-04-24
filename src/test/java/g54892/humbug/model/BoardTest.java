@@ -84,6 +84,9 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of isInside method, of class Board.
+     */
     @Test
     public void testGetSquareType_exist() {
         System.out.println("get square type exist");
@@ -92,6 +95,9 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of isInside method, of class Board.
+     */
     @Test
     public void testGetSquareType_exist_star() {
         System.out.println("get square type exist");
@@ -100,10 +106,13 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of isInside method, of class Board.
+     */
     @Test
     public void testGetSquareType_null() {
         System.out.println("get case type illegal argument");
-              Assertions.assertThrows(NullPointerException.class,
+        Assertions.assertThrows(NullPointerException.class,
                 () -> {
                     SquareType squareType = board.getSquareType(new Position(1, 0));
                 });

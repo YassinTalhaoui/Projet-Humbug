@@ -44,14 +44,15 @@
     ]
   },
   "animals": [
-    {
+        {
       "type": "Ladybird",
-      "positionOnBoard": { "row": 1, "column": 3 }
+      "positionOnBoard": { "row": 2, "column": 3 }
     },
     {
       "type": "Ladybird",
-      "positionOnBoard": { "row": 2, "column": 3 }
+      "positionOnBoard": { "row": 1, "column": 3 }
     }
+    
   ],
   "nMoves": 9
 }

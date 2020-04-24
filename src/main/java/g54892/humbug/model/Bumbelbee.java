@@ -1,8 +1,5 @@
 package g54892.humbug.model;
 
-import static g54892.humbug.model.SquareType.GRASS;
-import static g54892.humbug.model.SquareType.STAR;
-
 /**
  * This class represents grasshoppers on the board.
  *
@@ -42,33 +39,7 @@ public class Bumbelbee extends Animal {
                 pos = pos.next(direction);
                 return pos.next(direction);
             }
-
-            if (!board.isInside(pos.next(direction))) {
-                return null;
-            }
-            if (board.getSquareType(pos.next(direction)) == STAR) {
-                animal.setOnStar(true);
-                if (isOnStar()) {
-                    board.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);
-                    bumbelbeeToNull(animals);
-                }
-            }
         }
-        return pos.next(direction);
+        return moveOneFlying(direction, board, animals);
     }
-
-    /**
-     * Nullifies an animal if it's on a star.
-     *
-     * @param animals a bumbelbee.
-     */
-    private void bumbelbeeToNull(Animal... animals) {
-        Animal bumbelbee = new Bumbelbee(getPositionOnBoard());
-        for (Animal animal : animals) {
-            if (animal.isOnStar()) {
-                bumbelbee = null;
-            }
-        }
-    }
-
 }

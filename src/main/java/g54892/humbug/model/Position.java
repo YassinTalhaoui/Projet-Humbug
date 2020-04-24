@@ -1,10 +1,5 @@
 package g54892.humbug.model;
 
-import static g54892.humbug.model.Direction.EAST;
-import static g54892.humbug.model.Direction.NORTH;
-import static g54892.humbug.model.Direction.SOUTH;
-import static g54892.humbug.model.Direction.WEST;
-
 /**
  * Position represents our current position on the board.
  *
@@ -103,29 +98,7 @@ public class Position {
      * @return the position that comes next the current position.
      */
     public Position next(Direction direction) {
-        Position newPos = null;
-        if (null != direction) {
-            switch (direction) {
-                case NORTH:
-                    newPos = new Position(this.getRow() + Direction.NORTH.getDeltaRow(),
-                            this.getColumn() + Direction.NORTH.getDeltaColumn());
-                    break;
-                case SOUTH:
-                    newPos = new Position(this.getRow() + Direction.SOUTH.getDeltaRow(),
-                            this.getColumn() + Direction.SOUTH.getDeltaColumn());
-                    break;
-                case EAST:
-                    newPos = new Position(this.getRow() + Direction.EAST.getDeltaRow(),
-                            this.getColumn() + Direction.EAST.getDeltaColumn());
-                    break;
-                case WEST:
-                    newPos = new Position(this.getRow() + Direction.WEST.getDeltaRow(),
-                            this.getColumn() + Direction.WEST.getDeltaColumn());
-                    break;
-                default:
-                    break;
-            }
-        }
-        return newPos;
+       return new Position( row + direction.getDeltaRow(),
+       column+direction.getDeltaColumn());
     }
 }

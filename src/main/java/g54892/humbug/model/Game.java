@@ -85,7 +85,7 @@ public class Game implements Model {
      * @param position a given position.
      * @param direction a given direction.
      */
-    public void move(Position position, Direction direction/*,int level*/) {
+    public void move(Position position, Direction direction) {
         if (board == null) {
             throw new IllegalArgumentException("board ne peut pas etre null " + board);
         }
@@ -96,24 +96,18 @@ public class Game implements Model {
             throw new IllegalArgumentException("valeurs incorrectes");
         }
         int i = 0;
-         //remainingMoves = Level.getLevel(level).getnMoves();
+
         while (i < animals.length) {
             if (this.animals[i].move(board, direction, animals) == null /*|| !this.board.isInside(position)*/) {
                 System.out.println(LevelStatus.FAIL);
-                
-            } else {
+            } else if (animals[i].getPositionOnBoard().equals(position)) {
 
-                if (animals[i].getPositionOnBoard().equals(position)) {
-                    position = this.animals[i].move(board, direction, animals);
-                    this.animals[i].setPositionOnBoard(position);
-                    System.out.println(LevelStatus.IN_PROGRESS);
-                   // getLevelStatus( level);
-                    remainingMoves++;
-                    
-                }
+                position = this.animals[i].move(board, direction, animals);
+                this.animals[i].setPositionOnBoard(position);
+                System.out.println(LevelStatus.IN_PROGRESS);
+                remainingMoves++;
             }
             i++;
-           //remainingMoves--;
         }
     }
 
@@ -129,23 +123,14 @@ public class Game implements Model {
 
     @Override
     public LevelStatus getLevelStatus(int level) {
-       
-
         for (Animal animal : animals) {
-          
-            
-            if (animal.isOnStar() && remainingMoves<= Level.getLevel(level).getnMoves()) {
+            if (animal.isOnStar() && remainingMoves <= Level.getLevel(level).getnMoves()) {
                 return LevelStatus.WIN;
-            }
-            if (getRemainingMoves() >= Level.getLevel(level).getnMoves()&&!animal.isOnStar()) {
+            } else if (getRemainingMoves() >= Level.getLevel(level).getnMoves() && !animal.isOnStar()) {
                 animal.setOnStar(true);
                 System.out.println(LevelStatus.FAIL + ": Nombres de deplacement autorisés atteind!");
-
             }
-        
         }
-
         return null;
     }
-
 }

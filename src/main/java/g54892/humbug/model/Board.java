@@ -43,7 +43,6 @@ public class Board {
      */
     public static Board getInitialBoard(int level) {
         Board board = Level.getLevel(level).getBoard();
-
         return board;
     }
 
@@ -78,7 +77,6 @@ public class Board {
             throw new IllegalArgumentException("position en dehors du plateau de jeu " + pos);
         }
         SquareType type = squares[pos.getRow()][pos.getColumn()].getType();
-
         return type;
     }
 

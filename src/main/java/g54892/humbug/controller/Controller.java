@@ -31,16 +31,17 @@ public class Controller {
 
     /**
      * Starts the game while level isn't finish and no animals has fallen.
+     *
      * @param level an integer.
      */
     public void startGame(int level) {
         game.startLevel(level);
-        System.out.println("");
-        System.out.println("Niveau : "+level);
-        System.out.println("");
+        System.out.println("\033[41;38;1m===========");
+        System.out.println("Niveau : " + level);
+        System.out.println("\033[41;38;1m===========");
         System.out.println(LevelStatus.NOT_STARTED);
         //int i = game.getAnimals().length - 1;
-        int i=0;
+        int i = 0;
         int remainingMoves = Level.getLevel(level).getnMoves();
         while (i < game.getAnimals().length && remainingMoves > 0) {
             game.getAnimals()[i].setOnStar(false);
@@ -53,7 +54,6 @@ public class Controller {
                         Position pos = view.askPosition(level);
                         Direction direction = view.askDirection();
                         game.move(pos, direction);
-                  
                         game.getLevelStatus(level);
                     } catch (Exception e) {
                         view.displayError("erreur !!!");

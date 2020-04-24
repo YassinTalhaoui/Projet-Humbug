@@ -132,30 +132,17 @@ public class Square {
     public boolean hasWall(Direction direction) {
         switch (direction) {
             case NORTH:
-                if (northWall == true) {
                     return northWall;
-                }
-                break;
             case SOUTH:
-                if (southWall == true) {
                     return southWall;
-                }
-                break;
             case EAST:
-                if (eastWall == true) {
                     return eastWall;
-                }
-                break;
             case WEST:
-                if (westWall == true) {
                     return westWall;
-                }
-                break;
             default:
                 break;
         }
         return false;
-
     }
 
     /**
@@ -167,4 +154,6 @@ public class Square {
     public String toString() {
         return "" + type + "";
     }
+   
 }
+

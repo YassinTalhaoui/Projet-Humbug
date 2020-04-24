@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: g54892.humbug.model.GrasshopperTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s - in g54892.humbug.model.GrasshopperTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s - in g54892.humbug.model.GrasshopperTest

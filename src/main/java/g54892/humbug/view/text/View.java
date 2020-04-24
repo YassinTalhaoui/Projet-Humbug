@@ -26,9 +26,9 @@ public class View implements InterfaceView {
      * @param board a given board.
      * @param animals the given animals.
      */
-    public void displayBoard(Board board/*, Direction direction*/, Animal... animals) {
+    public void displayBoard(Board board, Animal... animals) {
         int s = 0;
-        String[][] game = new String[board.getNbRow()][board.getNbColumn()];
+        String[][] game = new String[board.getNbRow()][board.getNbColumn()]; 
         for (int i = 0; i < game.length; i++) {
             System.out.println("");
             System.out.println("_______________________________________________");

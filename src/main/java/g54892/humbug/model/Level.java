@@ -98,10 +98,4 @@ public class Level {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        System.out.println("level2 " + getLevel(2));
-        System.out.println(readLevel(100));
-    }
-
 }

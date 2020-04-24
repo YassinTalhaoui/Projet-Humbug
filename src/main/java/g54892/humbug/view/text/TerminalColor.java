@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g54892.humbug.view.text;
 
-
-
-    import java.awt.Color;
-
 /**
+ * This class will allow us to bring some color to our game.
  *
- * @author Yassin
+ * @author Pbt.
  */
-
-    public enum TerminalColor {
-     
+public enum TerminalColor {
 
     DEFAULT("\033[0m"),
     BLACK("\033[30m"),
@@ -42,7 +32,7 @@ package g54892.humbug.view.text;
     PINK_UNDERLINE("\033[35;4m"),
     CYAN_UNDERLINE("\033[36;4m"),
     WHITE_UNDERLINE("\033[38;4m"),
-    GREY_UNDERLINE("\033[37;4m"),    
+    GREY_UNDERLINE("\033[37;4m"),
     LIGHT_GREY_UNDERLINE("\033[37;4m"),
     DARK_GREY_UNDERLINE("\033[90;4m"),
     LIGHT_RED_UNDERLINE("\033[91m;4m"),
@@ -79,8 +69,7 @@ package g54892.humbug.view.text;
     BG_YELLOW_FG_WHITE("\033[43;38;1m"),
     BG_BLUE_FG_WHITE("\033[44;38;1m"),
     BG_MAGENTA_FG_WHITE("\033[45;38;1m"),
-    BG_CYAN_FG_WHITE("\033[46;38;1m"),
-;
+    BG_CYAN_FG_WHITE("\033[46;38;1m"),;
     private String couleur;
 
     private TerminalColor(String c) {
@@ -91,6 +80,4 @@ package g54892.humbug.view.text;
     public String toString() {
         return "" + couleur;
     }
-    
-    
 }
