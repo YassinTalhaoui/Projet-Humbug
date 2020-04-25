@@ -36,20 +36,14 @@ public class Controller {
      */
     public void startGame(int level) {
         game.startLevel(level);
-        System.out.println("\033[41;38;1m===========");
-        System.out.println("Niveau : " + level);
-        System.out.println("\033[41;38;1m===========");
-        System.out.println(LevelStatus.NOT_STARTED);
-        //int i = game.getAnimals().length - 1;
+        view.displayLevel(level);
         int i = 0;
         int remainingMoves = Level.getLevel(level).getnMoves();
         while (i < game.getAnimals().length && remainingMoves > 0) {
             game.getAnimals()[i].setOnStar(false);
             while (!this.game.getAnimals()[i].isOnStar()) {
-                {
                     view.displayRemainingMoves(remainingMoves);
                     view.displayBoard(this.game.getBoard(), this.game.getAnimals());
-                    System.out.println("");
                     try {
                         Position pos = view.askPosition(level);
                         Direction direction = view.askDirection();
@@ -59,11 +53,9 @@ public class Controller {
                         view.displayError("erreur !!!");
                     }
                     remainingMoves--;
-                }
-            }
+                     }
             if (game.getAnimals()[i].isOnStar()) {
                 System.out.println(LevelStatus.WIN);
-
             }
             i++;
         }
@@ -78,5 +70,4 @@ public class Controller {
     public String toString() {
         return "Controller{" + "game=" + game + ", view=" + view + '}';
     }
-
 }

@@ -8,6 +8,7 @@ import static g54892.humbug.model.Direction.NORTH;
 import static g54892.humbug.model.Direction.SOUTH;
 import static g54892.humbug.model.Direction.WEST;
 import g54892.humbug.model.Level;
+import g54892.humbug.model.LevelStatus;
 import g54892.humbug.model.Position;
 import static g54892.humbug.model.SquareType.GRASS;
 import static g54892.humbug.model.SquareType.STAR;
@@ -21,62 +22,108 @@ import java.util.Scanner;
 public class View implements InterfaceView {
 
     /**
-     * displays the gaming board.
+     * Displays the gaming board.
      *
      * @param board a given board.
      * @param animals the given animals.
      */
     public void displayBoard(Board board, Animal... animals) {
         int s = 0;
-        String[][] game = new String[board.getNbRow()][board.getNbColumn()]; 
+        String[][] game = new String[board.getNbRow()][board.getNbColumn()];
         for (int i = 0; i < game.length; i++) {
             System.out.println("");
             System.out.println("_______________________________________________");
-
             for (int j = 0; j < game[i].length; j++) {
                 Position pos = new Position(i, j);
                 if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
                     if (pos.equals(animals[s].getPositionOnBoard())) {
-                        if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
-                        System.out.format(" %2s ", " ||S |");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
-                        System.out.format(" %2s ", " | S||");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
-                        System.out.format(" %2s ", " |¯S¯|");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
-                        System.out.format(" %2s ", " |_S_|");
-                    }else
-                        System.out.format(" %2s ", " | S |");
-                        if (animals.length > 1&& s<animals.length) {
+                        displayAnimal(board,pos);
+                        if (animals.length > 1 && s < animals.length) {
                             s++;
                         }
-                    } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
-                        System.out.format(" %2s ", " | _ |");
-                    } else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
-                        System.out.format(" %2s ", " | ¯ |");
-                    } else if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
-                        System.out.format(" %2s ", " ||  |");
-                    } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
-                        System.out.format(" %2s ", " |  ||");
                     } else {
-                        System.out.format(" %2s ", " |   |");
+                        displayGrassCase(board,pos);
                     }
                 } else if (board.isInside(pos) && board.getSquareType(pos).equals(STAR)) {
-          
-                        if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
-                        System.out.format(" %2s ", " ||* |");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
-                        System.out.format(" %2s ", " | *||");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
-                        System.out.format(" %2s ", " |¯*¯|");
-                    }else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
-                        System.out.format(" %2s ", " |_*_|");
-                    }else
-                    System.out.format(" %2s ", " | * |");
+                    displayStarCase(board, pos);
                 } else if (!board.isInside(pos)) {
                     System.out.format(" %2s ", " | X |");
                 }
             }
+        }
+        System.out.println("");
+        System.out.println("");
+    }
+
+    /**
+     * Displays the cases that are occupied by an animal.
+     *
+     * @param board a given board.
+     * @param pos a gieven position.
+     */
+    private void displayAnimal(Board board,Position pos) {
+        if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
+            System.out.format(" %2s ", " ||S |");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
+            System.out.format(" %2s ", " | S||");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " |¯S¯|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
+            System.out.format(" %2s ", " |_S_|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " |ΞSΞ|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST) && board.getSquare(pos).hasWall(WEST)) {
+            System.out.format(" %2s ", " ||S||");
+        } else {
+            System.out.format(" %2s ", " | S |");
+        }
+    }
+
+    /**
+     * Displays the grass cases.
+     *
+     * @param board a given board.
+     * @param pos a gieven position.
+     */
+    private void displayGrassCase(Board board,Position pos) {
+        if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
+            System.out.format(" %2s ", " | _ |");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " | ¯ |");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
+            System.out.format(" %2s ", " ||  |");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
+            System.out.format(" %2s ", " |  ||");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " |Ξ Ξ|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST) && board.getSquare(pos).hasWall(WEST)) {
+            System.out.format(" %2s ", " || ||");
+        } else {
+            System.out.format(" %2s ", " |   |");
+        }
+    }
+    
+    /**
+     * Displays the star cases.
+     *
+     * @param board a given board.
+     * @param pos a gieven position.
+     */
+    private void displayStarCase(Board board, Position pos) {
+        if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
+            System.out.format(" %2s ", " ||* |");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
+            System.out.format(" %2s ", " | *||");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " |¯*¯|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
+            System.out.format(" %2s ", " |_*_|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " |Ξ*Ξ|");
+        } else if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH) && board.getSquare(pos).hasWall(NORTH)) {
+            System.out.format(" %2s ", " ||*||");
+        } else {
+            System.out.format(" %2s ", " | * |");
         }
     }
 
@@ -88,6 +135,18 @@ public class View implements InterfaceView {
     public void displayRemainingMoves(int remainingMoves) {
         System.out.println("Nombres de déplacemets restants: " + remainingMoves);
 
+    }
+    
+    /**
+     * Displays the number of the current level.
+     *
+     * @param level an integer.
+     */
+    public void displayLevel(int level){
+        System.out.println("\033[41;38;1m===========");
+        System.out.println("Niveau : " + level);
+        System.out.println("\033[41;38;1m===========");
+        System.out.println(LevelStatus.NOT_STARTED);
     }
 
     /**
@@ -101,6 +160,7 @@ public class View implements InterfaceView {
 
     /**
      * Asks for a position and returns it.
+     *
      * @param level an integer.
      * @return the given position.
      */
@@ -127,9 +187,7 @@ public class View implements InterfaceView {
             column = kbd1.nextInt();
         }
         Position pos = new Position(line, column);
-
         return pos;
-
     }
 
     /**
@@ -163,7 +221,6 @@ public class View implements InterfaceView {
             default:
                 break;
         }
-
         return d[nb];
     }
 }

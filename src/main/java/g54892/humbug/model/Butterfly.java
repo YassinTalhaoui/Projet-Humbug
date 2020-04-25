@@ -35,18 +35,18 @@ public class Butterfly extends Animal {
     @Override
     public Position move(Board board, Direction direction, Animal... animals) {
         Position pos = super.getPositionOnBoard();
-        pos=pos.next(direction).next(direction);
+        pos = pos.next(direction).next(direction);
         for (Animal animal : animals) {
-            if(!board.isInside(pos)){
+            if (!board.isInside(pos)) {
                 return null;
             }
             if (animal.getPositionOnBoard().equals(pos.next(direction))) {
-                 return pos.next(direction).next(direction);      
+                return pos.next(direction).next(direction);
             }
-             if (board.getSquareType(pos.next(direction)) == STAR) {
+            if (board.getSquareType(pos.next(direction)).equals(STAR)) {
                 animalToNull(direction, pos, board, animals);
-            }           
+            }
         }
-       return moveOneFlying(direction, board, animals).next(direction);
+        return moveOneFlying(direction, board, animals).next(direction);
     }
 }

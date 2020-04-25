@@ -1,5 +1,6 @@
 package g54892.humbug.model;
 
+import g54892.humbug.view.text.View;
 import java.util.Arrays;
 
 /**
@@ -13,6 +14,7 @@ public class Game implements Model {
     private Animal[] animals;
     private int remainingMoves;
     private int currentLevel;
+    LevelStatus getLevelstatus;
 
     /**
      * Simple getter of currentLevel.
@@ -50,24 +52,10 @@ public class Game implements Model {
         return animals;
     }
 
-    /**
-     * Simple setter of Board.
-     *
-     * @param board a Board.
-     */
-    public void setBoard(Board board) {
-        this.board = board;
+    public LevelStatus getGetLevelstatus() {
+        return getLevelstatus;
     }
-
-    /**
-     * Simple setter of animals.
-     *
-     * @param animals an array of animals.
-     */
-    public void setAnimals(Animal[] animals) {
-        this.animals = animals;
-    }
-
+ 
     /**
      * Initializes the board and the animals for the first level.
      *
@@ -96,7 +84,6 @@ public class Game implements Model {
             throw new IllegalArgumentException("valeurs incorrectes");
         }
         int i = 0;
-
         while (i < animals.length) {
             if (this.animals[i].move(board, direction, animals) == null /*|| !this.board.isInside(position)*/) {
                 System.out.println(LevelStatus.FAIL);
@@ -111,18 +98,9 @@ public class Game implements Model {
         }
     }
 
-    /**
-     * This object (which is already a string!) is itself returned.
-     *
-     * @return the string itself.
-     */
-    @Override
-    public String toString() {
-        return "Game{" + "board=" + board + ", animals=" + Arrays.toString(animals) + '}';
-    }
-
     @Override
     public LevelStatus getLevelStatus(int level) {
+        View w = new View();
         for (Animal animal : animals) {
             if (animal.isOnStar() && remainingMoves <= Level.getLevel(level).getnMoves()) {
                 return LevelStatus.WIN;
@@ -133,4 +111,5 @@ public class Game implements Model {
         }
         return null;
     }
+ 
 }

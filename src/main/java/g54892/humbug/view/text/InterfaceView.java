@@ -48,4 +48,11 @@ public interface InterfaceView {
      * @param remainingMoves an integers
      */
     void displayRemainingMoves(int remainingMoves);
+    
+    /**
+     * Displays the number of the current level.
+     *
+     * @param level an integer.
+     */
+    void displayLevel(int level);
 }

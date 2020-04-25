@@ -53,17 +53,12 @@ public class Board {
      * @return true if the position is in the board, false otherwise.
      */
     public boolean isInside(Position pos) {
-        if (pos == null) {
-            throw new IllegalArgumentException("position invalide " + pos);
-        }
-        if (pos.getRow() < 0 || pos.getRow() >= squares.length) {
-            return false;
-        }
-        if (pos.getColumn() < 0 || pos.getColumn() >= squares[0].length) {
+        if (pos.getRow() < 0 || pos.getRow() >= squares.length
+                || pos.getColumn() < 0 || pos.getColumn() >= squares[0].length
+                || pos == null) {
             return false;
         }
         return squares[pos.getRow()][pos.getColumn()] != null;
-
     }
 
     /**

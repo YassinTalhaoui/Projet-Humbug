@@ -43,5 +43,4 @@ public class Snail extends Animal {
     public String toString() {
         return "Snail{" + '}';
     }
-
 }

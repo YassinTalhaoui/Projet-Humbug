@@ -46,7 +46,7 @@ public class Ladybird extends Animal {
             if (!board.isInside(pos.next(direction))) {
                 return null;
             }
-            if (board.getSquareType(pos.next(direction)) == STAR) {
+            if (board.getSquareType(pos.next(direction)).equals(STAR)) {
                 animalToNull(direction, pos, board, animals);
             }
         }

@@ -135,7 +135,7 @@ public abstract class Animal {
             if (!board.isInside(pos.next(direction))) {
                 return null;
             }
-            if (board.getSquareType(pos.next(direction)) == STAR) {
+            if (board.getSquareType(pos.next(direction)).equals(STAR)) {
                 animal.setOnStar(true);
                 if (isOnStar()) {
                     board.getSquares()[pos.next(direction).getRow()][pos.next(direction).getColumn()].setType(GRASS);

@@ -98,7 +98,7 @@ public class Position {
      * @return the position that comes next the current position.
      */
     public Position next(Direction direction) {
-       return new Position( row + direction.getDeltaRow(),
-       column+direction.getDeltaColumn());
+        return new Position(row + direction.getDeltaRow(),
+                column + direction.getDeltaColumn());
     }
 }

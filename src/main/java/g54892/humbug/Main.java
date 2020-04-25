@@ -12,13 +12,11 @@ import g54892.humbug.view.text.View;
 public class Main {
 
     public static void main(String[] args) {
-        int i = 4;  //Entrez ici le niveau a partir duquel vous désirez commencer.☕
-        while (i < 100) {
+        int i = 100;  //Entrez ici le niveau a partir duquel vous désirez commencer.☕
+        while (i < 101) {
             Controller controller = new Controller(new Game(), new View());
             controller.startGame(i);
             i++;
         }
-
     }
-
 }
