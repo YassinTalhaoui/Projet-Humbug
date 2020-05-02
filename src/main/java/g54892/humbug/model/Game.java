@@ -1,7 +1,6 @@
 package g54892.humbug.model;
 
-import g54892.humbug.view.text.View;
-import java.util.Arrays;
+import static g54892.humbug.model.LevelStatus.WIN;
 
 /**
  * Gathers the elements necessary for the game to present a facade to the view.
@@ -14,16 +13,7 @@ public class Game implements Model {
     private Animal[] animals;
     private int remainingMoves;
     private int currentLevel;
-    LevelStatus getLevelstatus;
-
-    /**
-     * Simple getter of currentLevel.
-     *
-     * @return the current level.
-     */
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
+    private LevelStatus getLevelStatus;
 
     /**
      * Simple getter of remainingMoves.
@@ -52,17 +42,30 @@ public class Game implements Model {
         return animals;
     }
 
+    /**
+     * Simple getter of getLevelStatus.
+     *
+     * @return getLevelStatus.
+     */
     public LevelStatus getGetLevelstatus() {
-        return getLevelstatus;
+        return getLevelStatus;
     }
- 
+
+    /**
+     * Simple setter of getLevelStatus.
+     *
+     * @param getLevelStatus a status.
+     */
+    public void setGetLevelStatus(LevelStatus getLevelStatus) {
+        this.getLevelStatus = getLevelStatus;
+    }
+    
     /**
      * Initializes the board and the animals for the first level.
      *
      * @param level an integer that represents the level.
      */
     public void startLevel(int level) {
-
         this.animals = Level.getLevel(level).getAnimals();
         this.board = Level.getLevel(level).getBoard();
     }
@@ -74,21 +77,12 @@ public class Game implements Model {
      * @param direction a given direction.
      */
     public void move(Position position, Direction direction) {
-        if (board == null) {
-            throw new IllegalArgumentException("board ne peut pas etre null " + board);
-        }
-        if (animals == null || animals.length == 0) {
-            throw new IllegalArgumentException("animals ne peut pas etre null " + Arrays.toString(animals));
-        }
-        if (position == null || direction == null) {
-            throw new IllegalArgumentException("valeurs incorrectes");
-        }
+        error(position,direction); 
         int i = 0;
-        while (i < animals.length) {
-            if (this.animals[i].move(board, direction, animals) == null /*|| !this.board.isInside(position)*/) {
+        while (i < animals.length ) {
+            if (this.animals[i].move(board, direction, animals) == null ) {  
                 System.out.println(LevelStatus.FAIL);
             } else if (animals[i].getPositionOnBoard().equals(position)) {
-
                 position = this.animals[i].move(board, direction, animals);
                 this.animals[i].setPositionOnBoard(position);
                 System.out.println(LevelStatus.IN_PROGRESS);
@@ -98,18 +92,35 @@ public class Game implements Model {
         }
     }
 
-    @Override
+    /**
+     * Changes the status according to the situation.
+     *
+     * @param level an integer.
+     * @return the status of the current level.
+     */
     public LevelStatus getLevelStatus(int level) {
-        View w = new View();
         for (Animal animal : animals) {
             if (animal.isOnStar() && remainingMoves <= Level.getLevel(level).getnMoves()) {
+                setGetLevelStatus(WIN);
                 return LevelStatus.WIN;
             } else if (getRemainingMoves() >= Level.getLevel(level).getnMoves() && !animal.isOnStar()) {
                 animal.setOnStar(true);
                 System.out.println(LevelStatus.FAIL + ": Nombres de deplacement autorisés atteind!");
+                return LevelStatus.FAIL;
             }
         }
         return null;
     }
- 
+    
+    /**
+     * Displays the error message if the conditions are rigth.
+     * @param position a position.
+     * @param direction a direction.
+     */
+    private void error(Position position, Direction direction){
+        if (board == null || animals == null || animals.length == 0
+                || position == null || direction == null) {
+            throw new IllegalArgumentException("valeurs incorrectes" );
+        }
+    }
 }

@@ -37,6 +37,7 @@ public class Snail extends Animal {
 
     /**
      * Represents an object into a String.
+     *
      * @return the String itself.
      */
     @Override

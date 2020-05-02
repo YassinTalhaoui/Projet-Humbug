@@ -3,6 +3,7 @@ package g54892.humbug.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Provides a level of game.
@@ -78,7 +79,8 @@ public class Level {
      */
     @Override
     public String toString() {
-        return "Level{" + "board=" + board + ", animals=" + animals + ", nMoves=" + nMoves + '}';
+        return "Level{" + "board=" + board + ", animals="
+                + Arrays.toString(animals) + ", nMoves=" + nMoves + '}';
     }
 
     /**

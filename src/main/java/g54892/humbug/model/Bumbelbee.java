@@ -36,8 +36,7 @@ public class Bumbelbee extends Animal {
         pos = pos.next(direction);
         for (Animal animal : animals) {
             if (animal.getPositionOnBoard().equals(pos.next(direction))) {
-                pos = pos.next(direction);
-                return pos.next(direction);
+                return pos.next(direction).next(direction);
             }
         }
         return moveOneFlying(direction, board, animals);

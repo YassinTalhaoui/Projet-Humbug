@@ -81,7 +81,6 @@ public class Board {
      * @return the numbeer of rows
      */
     public int getNbRow() {
-
         return squares.length;
     }
 
@@ -118,5 +117,4 @@ public class Board {
     public String toString() {
         return "Board{" + "squares=" + Arrays.deepToString(squares) + '}';
     }
-
 }

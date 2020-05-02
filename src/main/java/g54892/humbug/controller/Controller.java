@@ -42,23 +42,48 @@ public class Controller {
         while (i < game.getAnimals().length && remainingMoves > 0) {
             game.getAnimals()[i].setOnStar(false);
             while (!this.game.getAnimals()[i].isOnStar()) {
-                    view.displayRemainingMoves(remainingMoves);
-                    view.displayBoard(this.game.getBoard(), this.game.getAnimals());
-                    try {
-                        Position pos = view.askPosition(level);
-                        Direction direction = view.askDirection();
-                        game.move(pos, direction);
-                        game.getLevelStatus(level);
-                    } catch (Exception e) {
-                        view.displayError("erreur !!!");
-                    }
-                    remainingMoves--;
-                     }
+                whileNotOnStar(level, remainingMoves);
+                remainingMoves--;
+            }
             if (game.getAnimals()[i].isOnStar()) {
                 System.out.println(LevelStatus.WIN);
             }
             i++;
         }
+    }
+
+    /**
+     * Restars the same level if all conditions are met.
+     *
+     * @param level the current level.
+     * @param remainingMoves the remaining moves of the level.
+     */
+    private void restartLevel(int level, int remainingMoves) {
+        if (remainingMoves < 0 || game.getLevelStatus(level) == LevelStatus.FAIL) {
+            remainingMoves = Level.getLevel(level).getnMoves();
+            game.startLevel(level);
+            whileNotOnStar(level, remainingMoves);
+        }
+    }
+
+    /**
+     * Continues the while all the animals aren't on a star.
+     *
+     * @param level the current level.
+     * @param remainingMoves the remaining moves of the level.
+     */
+    private void whileNotOnStar(int level, int remainingMoves) {
+        view.displayRemainingMoves(remainingMoves);
+        view.displayBoard(this.game.getBoard(), this.game.getAnimals());
+        try {
+            Position pos = view.askPosition(level);
+            Direction direction = view.askDirection();
+            game.move(pos, direction);
+            game.getLevelStatus(level);
+        } catch (Exception e) {
+            view.displayError("erreur !!!");
+        }
+        restartLevel(level, remainingMoves);
     }
 
     /**

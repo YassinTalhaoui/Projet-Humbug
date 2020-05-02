@@ -72,10 +72,20 @@ public enum TerminalColor {
     BG_CYAN_FG_WHITE("\033[46;38;1m"),;
     private String couleur;
 
+    /**
+     * Provides a color.
+     *
+     * @param c a String.
+     */
     private TerminalColor(String c) {
         this.couleur = c;
     }
 
+    /**
+     * Represents an object into a String.
+     *
+     * @return the String itself.
+     */
     @Override
     public String toString() {
         return "" + couleur;

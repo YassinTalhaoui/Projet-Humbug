@@ -41,24 +41,41 @@ public class Spider extends Animal {
             if (pos.next(direction).equals(animals[a].getPositionOnBoard())) {
                 return pos;
             }
+            if (!board.isInside(pos)) {
+                return null;
+            }
             a++;
         }
         if (board.isInside(pos.next(direction))) {
-            if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
-                return pos.next(direction.opposite());
-            }
-            if (!board.isInside(pos)) {
-                return pos.next(direction.opposite());
-            }
-            if (board.getSquareType(pos.next(direction)).equals(STAR)) {
-                animalToNull(direction, pos, board, animals);
-            }
-            pos = pos.next(direction);
-            setPositionOnBoard(pos);
-        }
-        if (!board.isInside(pos)) {
-            return null;
+            moveInside(board, direction, pos, animals);
         }
         return moveOneCrawling(board, direction, animals);
     }
+
+    /**
+     * Moves the given spiders on the gaming board.
+     *
+     * @param board the gaming board.
+     * @param pos a given position.
+     * @param direction the direction of the deplacement.
+     * @param animals represents one or a lot of spiders.
+     * @return The deplacement if the next position is free the spiders on the
+     * board.
+     */
+    private Position moveInside(Board board, Direction direction, Position pos,
+             Animal... animals) {
+        if (board.getSquare(pos.next(direction)).hasWall(direction.opposite())) {
+            return pos.next(direction.opposite());
+        }
+        if (!board.isInside(pos)) {
+            return pos.next(direction.opposite());
+        }
+        if (board.getSquareType(pos.next(direction)).equals(STAR)) {
+            animalToNull(direction, pos, board, animals);
+        }
+        pos = pos.next(direction);
+        setPositionOnBoard(pos);
+        return null;
+    }
+
 }

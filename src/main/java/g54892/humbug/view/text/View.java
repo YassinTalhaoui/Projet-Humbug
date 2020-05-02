@@ -37,12 +37,12 @@ public class View implements InterfaceView {
                 Position pos = new Position(i, j);
                 if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
                     if (pos.equals(animals[s].getPositionOnBoard())) {
-                        displayAnimal(board,pos);
+                        displayAnimal(board, pos);
                         if (animals.length > 1 && s < animals.length) {
                             s++;
                         }
                     } else {
-                        displayGrassCase(board,pos);
+                        displayGrassCase(board, pos);
                     }
                 } else if (board.isInside(pos) && board.getSquareType(pos).equals(STAR)) {
                     displayStarCase(board, pos);
@@ -61,7 +61,7 @@ public class View implements InterfaceView {
      * @param board a given board.
      * @param pos a gieven position.
      */
-    private void displayAnimal(Board board,Position pos) {
+    private void displayAnimal(Board board, Position pos) {
         if (board.isInside(pos) && board.getSquare(pos).hasWall(WEST)) {
             System.out.format(" %2s ", " ||S |");
         } else if (board.isInside(pos) && board.getSquare(pos).hasWall(EAST)) {
@@ -85,7 +85,7 @@ public class View implements InterfaceView {
      * @param board a given board.
      * @param pos a gieven position.
      */
-    private void displayGrassCase(Board board,Position pos) {
+    private void displayGrassCase(Board board, Position pos) {
         if (board.isInside(pos) && board.getSquare(pos).hasWall(SOUTH)) {
             System.out.format(" %2s ", " | _ |");
         } else if (board.isInside(pos) && board.getSquare(pos).hasWall(NORTH)) {
@@ -102,7 +102,7 @@ public class View implements InterfaceView {
             System.out.format(" %2s ", " |   |");
         }
     }
-    
+
     /**
      * Displays the star cases.
      *
@@ -136,13 +136,13 @@ public class View implements InterfaceView {
         System.out.println("Nombres de déplacemets restants: " + remainingMoves);
 
     }
-    
+
     /**
      * Displays the number of the current level.
      *
      * @param level an integer.
      */
-    public void displayLevel(int level){
+    public void displayLevel(int level) {
         System.out.println("\033[41;38;1m===========");
         System.out.println("Niveau : " + level);
         System.out.println("\033[41;38;1m===========");
@@ -165,27 +165,8 @@ public class View implements InterfaceView {
      * @return the given position.
      */
     public Position askPosition(int level) {
-        Scanner kbd = new Scanner(System.in);
-        System.out.println("Veuillez entrer un numero de ligne");
-        int line = kbd.nextInt();
-        while (line > Level.getLevel(level).getBoard().getNbRow() || line < 0) {
-
-            String message = "Le nombre saisi n'est pas correct. "
-                    + "Veuillez entrer un nombre entier entre 0 et " + Level.getLevel(level).getBoard().getNbColumn() + " compris. ";
-            System.out.println(message);
-            line = kbd.nextInt();
-        }
-
-        Scanner kbd1 = new Scanner(System.in);
-        System.out.println("Veuillez entrer un numero de colonne");
-        int column = kbd1.nextInt();
-        while (column > Level.getLevel(level).getBoard().getNbColumn() || column < 0) {
-
-            String message = "Le nombre saisi n'est pas correct. "
-                    + "Veuillez entrer un nombre entier entre 0 et " + Level.getLevel(level).getBoard().getNbColumn() + " compris. ";
-            System.out.println(message);
-            column = kbd1.nextInt();
-        }
+        int line = askLine(level);
+        int column = askColumn(level);
         Position pos = new Position(line, column);
         return pos;
     }
@@ -196,18 +177,7 @@ public class View implements InterfaceView {
      * @return a direction between NORTH, SOUTH, EAST, WEST.
      */
     public Direction askDirection() {
-        Scanner kbd = new Scanner(System.in);
-        System.out.println("Veuillez entrer un chiffre parmi:" + 1 + " EAST");
-        System.out.println("                                 " + 2 + " NORTH");
-        System.out.println("                                 " + 3 + " SOUTH");
-        System.out.println("                                 " + 4 + " WEST");
-        int nb = kbd.nextInt();
-        while (nb <= 0 || nb > 4) {
-            String message = "Le nombre saisi n'est pas correct. "
-                    + "Veuillez entrer un nombre entier entre 0 et 4 compris. ";
-            System.out.println(message);
-            nb = kbd.nextInt();
-        }
+        int nb = askNumber();
         Direction[] d = {EAST, NORTH, SOUTH, WEST};
         switch (nb) {
             case 1:
@@ -222,5 +192,71 @@ public class View implements InterfaceView {
                 break;
         }
         return d[nb];
+    }
+
+    /**
+     * Offers one of the 4 directions.
+     */
+    private void directions() {
+        System.out.println("Veuillez entrer un chiffre parmi:" + 1 + " EAST");
+        System.out.println("                                 " + 2 + " NORTH");
+        System.out.println("                                 " + 3 + " SOUTH");
+        System.out.println("                                 " + 4 + " WEST");
+    }
+
+    /**
+     * Asks for a number between 0 and 4 and returns it.
+     *
+     * @return the entered number.
+     */
+    private int askNumber() {
+        Scanner kbd = new Scanner(System.in);
+        directions();
+        int nb = kbd.nextInt();
+        while (nb <= 0 || nb > 4) {
+            String message = "Le nombre saisi n'est pas correct. "
+                    + "Veuillez entrer un nombre entier entre 0 et 4 compris. ";
+            System.out.println(message);
+            nb = kbd.nextInt();
+        }
+        return nb;
+    }
+
+    /**
+     * Asks for a number of line and returns it.
+     *
+     * @param level an integer.
+     * @return the entered line number.
+     */
+    private int askLine(int level) {
+        Scanner kbd = new Scanner(System.in);
+        System.out.println("Veuillez entrer un numero de ligne");
+        int line = kbd.nextInt();
+        while (line > Level.getLevel(level).getBoard().getNbRow() || line < 0) {
+            String message = "Le nombre saisi n'est pas correct. "
+                    + "Veuillez entrer un nombre entier entre 0 et " + Level.getLevel(level).getBoard().getNbRow() + " compris. ";
+            System.out.println(message);
+            line = kbd.nextInt();
+        }
+        return line;
+    }
+
+    /**
+     * Asks for a number of column and returns it.
+     *
+     * @param level an integer.
+     * @return the entered column number.
+     */
+    private int askColumn(int level) {
+        Scanner kbd1 = new Scanner(System.in);
+        System.out.println("Veuillez entrer un numero de colonne");
+        int column = kbd1.nextInt();
+        while (column > Level.getLevel(level).getBoard().getNbColumn() || column < 0) {
+            String message = "Le nombre saisi n'est pas correct. "
+                    + "Veuillez entrer un nombre entier entre 0 et " + Level.getLevel(level).getBoard().getNbColumn() + " compris. ";
+            System.out.println(message);
+            column = kbd1.nextInt();
+        }
+        return column;
     }
 }

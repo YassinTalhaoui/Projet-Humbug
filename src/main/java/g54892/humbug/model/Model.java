@@ -20,7 +20,16 @@ public interface Model {
      * @return an array of the animals that are present on the board.
      */
     Animal[] getAnimals();
+    
+    /**
+     * Simple getter of getLevelStatus.
+     *
+     * @return getLevelStatus.
+     */
+    LevelStatus getGetLevelstatus();
 
+   // void setGetLevelStatus(LevelStatus getLevelStatus);
+    
     /**
      * Initializes the board and the animals for the first level.
      *
