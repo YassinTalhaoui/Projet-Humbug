@@ -25,14 +25,15 @@
     ]
   },
   "animals": [
+         {
+      "type": "Spider",
+      "positionOnBoard": { "row": 1, "column": 0 }
+    },
     {
       "type": "Spider",
       "positionOnBoard": { "row": 0, "column": 0 }
     },
-    {
-      "type": "Spider",
-      "positionOnBoard": { "row": 1, "column": 0 }
-    },
+   
     {
       "type": "Spider",
       "positionOnBoard": { "row": 2, "column": 0 }

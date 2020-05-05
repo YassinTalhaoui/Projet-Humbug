@@ -32,7 +32,7 @@ public class View implements InterfaceView {
         String[][] game = new String[board.getNbRow()][board.getNbColumn()];
         for (int i = 0; i < game.length; i++) {
             System.out.println("");
-            System.out.println("_______________________________________________");
+            displayLines(game);
             for (int j = 0; j < game[i].length; j++) {
                 Position pos = new Position(i, j);
                 if (board.isInside(pos) && board.getSquareType(pos).equals(GRASS)) {
@@ -143,9 +143,9 @@ public class View implements InterfaceView {
      * @param level an integer.
      */
     public void displayLevel(int level) {
-        System.out.println("\033[41;38;1m===========");
+        System.out.println("\033[41;38;10m===========");
         System.out.println("Niveau : " + level);
-        System.out.println("\033[41;38;1m===========");
+        System.out.println("\033[41;38;10m===========");
         System.out.println(LevelStatus.NOT_STARTED);
     }
 
@@ -258,5 +258,29 @@ public class View implements InterfaceView {
             column = kbd1.nextInt();
         }
         return column;
+    }
+    
+    /**
+     * Displays the lines.
+     *
+     * @param game an array of Strings.
+     */
+    private void displayLines(String[][] game) {
+        switch (game[0].length) {
+            case 3:
+                System.out.println("-----------------------");
+                break;
+            case 4:
+                System.out.println("-------------------------------");
+                break;
+            case 5:
+                System.out.println("---------------------------------------\033[41;38;10m");
+                break;
+            case 6:
+                System.out.println("-----------------------------------------------");
+                break;
+            default:
+                break;
+        }
     }
 }
