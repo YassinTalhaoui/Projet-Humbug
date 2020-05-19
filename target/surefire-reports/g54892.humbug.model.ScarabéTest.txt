@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: g54892.humbug.model.BumbelbeeTest
+Test set: g54892.humbug.model.ScarabéTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.02 s - in g54892.humbug.model.BumbelbeeTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s - in g54892.humbug.model.ScarabéTest

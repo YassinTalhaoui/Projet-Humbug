@@ -33,13 +33,13 @@
     ]
   },
   "animals": [
-    {
-      "type": "Ladybird",
-      "positionOnBoard": { "row": 2, "column": 4 }
-    },
-    {
+         {
       "type": "Spider",
       "positionOnBoard": { "row": 4, "column": 0 }
+    }
+    ,{
+      "type": "Ladybird",
+      "positionOnBoard": { "row": 4, "column": 3 }
     }
   ],
   "nMoves": 11
